@@ -78,7 +78,78 @@ export default function Router() {
       children: [
         { path: '/', element: <Navigate to="/dashboard/app" replace /> },
         { path: 'app', element: <GeneralApp /> },
-        { path: 'ecommerce', element: <GeneralEcommerce /> },
+        {
+          path: 'hospital',
+          element: <Hospital />,
+          children: [
+            { path: 'public-hospital', element: <PublicHospital /> },
+            { path: 'private-hospital', element: <PrivateHospital /> }
+          ]
+        },
+        {
+          path: 'department',
+          element: <Department />,
+          children: [
+            { path: 'surgical', element: <SurgicalDepartmenet /> },
+            { path: 'emergency', element: <EmergencyDepartment /> },
+            { path: 'pediatrics', element: <Pediatrics /> },
+            { path: 'radiology', element: <Radiology /> },
+            { path: 'cardiology', element: <Cardiology /> },
+            { path: 'neurology', element: <Neurology /> },
+            { path: 'orthopedics', element: <Orthopedics /> }
+          ]
+        },
+        {
+          path: 'medical-staff',
+          element: <MedicalStaff />,
+          children: [
+            { path: 'doctors', element: <Doctor /> },
+            { path: 'general-practioner', element: <GeneralPractitioner /> },
+            { path: 'pediatrician', element: <Pediatrician /> }
+          ]
+        },
+        {
+          path: 'patient',
+          element: <Patient />,
+          children: [
+            { path: 'inpatient', element: <Inpatient /> },
+            { path: 'outpatient', element: <Outpatient /> }
+          ]
+        },
+        {
+          path: 'pharmacy',
+          element: <Pharmacy />,
+          children: [
+            { path: 'medication', element: <Medication /> },
+            { path: 'inHospital', element: <InHospital /> },
+            { path: 'outHospital', element: <OutHospital /> }
+          ]
+        },
+        {
+          path: 'appointments',
+          element: <Appointment />,
+          children: [
+            { path: 'regular-checkup', element: <RegularCheckup /> },
+            { path: 'followUp', element: <FollowUp /> },
+            { path: 'emergencyVisit', element: <EmergencyVisit /> }
+          ]
+        },
+        {
+          path: 'medical-equipment',
+          element: <MedicalEquipment />,
+          children: [
+            { path: 'imaging-equipment', element: <ImagingEquipment /> },
+            { path: 'surgical-equipment', element: <SurgicalDepartmenet /> }
+          ]
+        },
+        {
+          path: 'medical-records',
+          element: <MedicalRecords />,
+          children: [
+            { path: 'physical-records', element: <PhysicalRecord /> },
+            { path: 'digital-records', element: <DigitalRecord /> }
+          ]
+        },
         { path: 'banking', element: <GeneralBanking /> },
         { path: 'booking', element: <GeneralBooking /> },
         {
@@ -267,6 +338,38 @@ const Pricing = Loadable(lazy(() => import('../pages/Pricing')));
 const Payment = Loadable(lazy(() => import('../pages/Payment')));
 const Page500 = Loadable(lazy(() => import('../pages/Page500')));
 const NotFound = Loadable(lazy(() => import('../pages/Page404')));
+const EmergencyVisit = Loadable(lazy(() => import('../pages/Appointments/EmergencyVisit')));
+const FollowUp = Loadable(lazy(() => import('../pages/Appointments/FollowUp')));
+const RegularCheckup = Loadable(lazy(() => import('../pages/Appointments/RegularCheckup')));
+const ImagingEquipment = Loadable(lazy(() => import('../pages/MedicalEquipment/ImagingEquipment')));
+const SurgicalEquipment = Loadable(lazy(() => import('../pages/MedicalEquipment/SurgicalEquipment')));
+const DigitalRecord = Loadable(lazy(() => import('../pages/MedicalRecords/DigitalRecord')));
+const PhysicalRecord = Loadable(lazy(() => import('../pages/MedicalRecords/PhysicalRecord')));
+const Doctor = Loadable(lazy(() => import('../pages/MedicalStaff/Doctor')));
+const GeneralPractitioner = Loadable(lazy(() => import('../pages/MedicalStaff/GeneralPractitioner')));
+const Pediatrician = Loadable(lazy(() => import('../pages/MedicalStaff/Pediatrician')));
+const Inpatient = Loadable(lazy(() => import('../pages/Patient/Inpatient')));
+const Outpatient = Loadable(lazy(() => import('../pages/Patient/Outpatient')));
+const InHospital = Loadable(lazy(() => import('../pages/Pharmacy/InHospital')));
+const OutHospital = Loadable(lazy(() => import('../pages/Pharmacy/OutHospital')));
+const Medication = Loadable(lazy(() => import('../pages/Pharmacy/Medication')));
+const Department = Loadable(lazy(() => import('../pages/Department')));
+const MedicalEquipment = Loadable(lazy(() => import('../pages/MedicalEquipment')));
+const MedicalRecords = Loadable(lazy(() => import('../pages/MedicalRecords')));
+const Hospital = Loadable(lazy(() => import('../pages/Hospital')));
+const PublicHospital = Loadable(lazy(() => import('../pages/hospital/PublicHospital')));
+const PrivateHospital = Loadable(lazy(() => import('../pages/hospital/PrivateHospital')));
+const MedicalStaff = Loadable(lazy(() => import('../pages/MedicalStaff')));
+const Patient = Loadable(lazy(() => import('../pages/Patient')));
+const SurgicalDepartmenet = Loadable(lazy(() => import('../pages/departments/SurgicalDepartmenet')));
+const EmergencyDepartment = Loadable(lazy(() => import('../pages/departments/EmergencyDepartment')));
+const Pediatrics = Loadable(lazy(() => import('../pages/departments/Pediatrics')));
+const Radiology = Loadable(lazy(() => import('../pages/departments/Radiology')));
+const Cardiology = Loadable(lazy(() => import('../pages/departments/Cardiology')));
+const Neurology = Loadable(lazy(() => import('../pages/departments/Neurology')));
+const Orthopedics = Loadable(lazy(() => import('../pages/departments/Orthopedics')));
+const Pharmacy = Loadable(lazy(() => import('../pages/Pharmacy')));
+const Appointment = Loadable(lazy(() => import('../pages/Appointment')));
 // Components
 const ComponentsOverview = Loadable(lazy(() => import('../pages/ComponentsOverview')));
 const Color = Loadable(lazy(() => import('../pages/components-overview/foundations/FoundationColors')));
