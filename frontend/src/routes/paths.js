@@ -36,9 +36,6 @@ export const PATH_DASHBOARD = {
   root: ROOTS_DASHBOARD,
   general: {
     app: path(ROOTS_DASHBOARD, '/app'),
-    ecommerce: path(ROOTS_DASHBOARD, '/ecommerce'),
-    analytics: path(ROOTS_DASHBOARD, '/analytics'),
-    banking: path(ROOTS_DASHBOARD, '/banking'),
     booking: path(ROOTS_DASHBOARD, '/booking')
   },
   mail: {
@@ -78,7 +75,15 @@ export const PATH_DASHBOARD = {
     post: path(ROOTS_DASHBOARD, '/blog/post/:title'),
     postById: path(ROOTS_DASHBOARD, '/blog/post/apply-these-7-secret-techniques-to-improve-event'),
     newPost: path(ROOTS_DASHBOARD, '/blog/new-post')
-  }
+  },
+  hospital: path(ROOTS_DASHBOARD, '/hospital'),
+  department: path(ROOTS_DASHBOARD, '/department'),
+  medicalStaff: path(ROOTS_DASHBOARD, '/medical-staff'),
+  patient: path(ROOTS_DASHBOARD, '/patient'),
+  pharmacy: path(ROOTS_DASHBOARD, '/pharmacy'),
+  appointments: path(ROOTS_DASHBOARD, '/appointments'),
+  medicalEquipment: path(ROOTS_DASHBOARD, '/medical-equipment'),
+  medicalRecords: path(ROOTS_DASHBOARD, '/medical-records')
 };
 
 export const PATH_DOCS = 'https://docs-minimals.vercel.app/introduction';
