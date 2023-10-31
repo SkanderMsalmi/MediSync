@@ -71,46 +71,26 @@ export default function LandingHero() {
       <RootStyle initial="initial" animate="animate" variants={varWrapEnter}>
         <HeroOverlayStyle alt="overlay" src="/static/overlay.svg" variants={varFadeIn} />
 
-        <HeroImgStyle alt="hero" src="/static/home/hero.png" variants={varFadeInUp} />
+        <HeroImgStyle alt="hero" src="/static/home/discussing-financial-reports.jpg" variants={varFadeInUp} />
 
         <Container maxWidth="lg">
           <ContentStyle>
             <motion.div variants={varFadeInRight}>
               <Typography variant="h1" sx={{ color: 'common.white' }}>
-                Start a <br />
-                new project <br /> with
+                Your Path <br />
+                to Wellness <br /> Begins
                 <Typography component="span" variant="h1" sx={{ color: 'primary.main' }}>
-                  &nbsp;Minimal
+                  &nbsp;Here
                 </Typography>
               </Typography>
             </motion.div>
 
             <motion.div variants={varFadeInRight}>
               <Typography sx={{ color: 'common.white' }}>
-                The starting point for your next project based on easy-to-customize Material-UI © helps you build apps
-                faster and better.
+                "Discover top-quality healthcare at MediSync. Your well-being is our priority. Schedule your appointment
+                now."
               </Typography>
             </motion.div>
-
-            <Stack
-              component={motion.div}
-              variants={varFadeInRight}
-              direction="row"
-              spacing={1}
-              justifyContent={{ xs: 'center', md: 'flex-start' }}
-            >
-              <img alt="sketch icon" src="/static/home/ic_sketch_small.svg" width={20} height={20} />
-
-              <Link
-                underline="always"
-                href="https://www.sketch.com/s/0fa4699d-a3ff-4cd5-a3a7-d851eb7e17f0"
-                target="_blank"
-                color="common.white"
-                sx={{ typography: 'body2' }}
-              >
-                Preview in Sketch Cloud
-              </Link>
-            </Stack>
 
             <motion.div variants={varFadeInRight}>
               <Button
@@ -120,18 +100,9 @@ export default function LandingHero() {
                 to={PATH_DASHBOARD.root}
                 startIcon={<Icon icon={flashFill} width={20} height={20} />}
               >
-                Live Preview
+                Get Started
               </Button>
             </motion.div>
-
-            <Stack direction="row" spacing={1.5} justifyContent={{ xs: 'center', md: 'flex-start' }}>
-              <motion.img variants={varFadeInRight} src="/static/home/ic_sketch.svg" />
-              <motion.img variants={varFadeInRight} src="/static/home/ic_figma.svg" />
-              <motion.img variants={varFadeInRight} src="/static/home/ic_material.svg" />
-              <motion.img variants={varFadeInRight} src="/static/home/ic_react.svg" />
-              <motion.img variants={varFadeInRight} src="/static/home/ic_js.svg" />
-              <motion.img variants={varFadeInRight} src="/static/home/ic_ts.svg" />
-            </Stack>
           </ContentStyle>
         </Container>
       </RootStyle>
