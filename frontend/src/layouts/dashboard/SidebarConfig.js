@@ -36,83 +36,91 @@ const sidebarConfig = [
         path: PATH_DASHBOARD.general.app,
         icon: ICONS.dashboard
       },
-      { title: 'e-commerce', path: PATH_DASHBOARD.general.ecommerce, icon: ICONS.ecommerce },
-      { title: 'analytics', path: PATH_DASHBOARD.general.analytics, icon: ICONS.analytics },
-      { title: 'banking', path: PATH_DASHBOARD.general.banking, icon: ICONS.banking },
-      { title: 'booking', path: PATH_DASHBOARD.general.booking, icon: ICONS.booking }
-    ]
-  },
-
-  // MANAGEMENT
-  // ----------------------------------------------------------------------
-  {
-    subheader: 'management',
-    items: [
-      // MANAGEMENT : USER
       {
-        title: 'user',
+        title: 'hospital',
+        path: PATH_DASHBOARD.user.root,
+        icon: ICONS.banking,
+        children: [
+          { title: 'public hospital', path: PATH_DASHBOARD.user.profile },
+          { title: 'private hospital', path: PATH_DASHBOARD.user.cards }
+        ]
+      },
+      {
+        title: 'department',
+        path: PATH_DASHBOARD.user.root,
+        icon: ICONS.banking,
+        children: [
+          { title: 'surgical department', path: PATH_DASHBOARD.user.profile },
+          { title: 'emergency department', path: PATH_DASHBOARD.user.cards },
+          { title: 'pediatrics', path: PATH_DASHBOARD.user.list },
+          { title: 'radiology', path: PATH_DASHBOARD.user.newUser },
+          { title: 'cardiology', path: PATH_DASHBOARD.user.editById },
+          { title: 'neurology', path: PATH_DASHBOARD.user.editById },
+          { title: 'orthopedics', path: PATH_DASHBOARD.user.account }
+        ]
+      },
+      {
+        title: 'medical Staff',
         path: PATH_DASHBOARD.user.root,
         icon: ICONS.user,
         children: [
-          { title: 'profile', path: PATH_DASHBOARD.user.profile },
-          { title: 'cards', path: PATH_DASHBOARD.user.cards },
-          { title: 'list', path: PATH_DASHBOARD.user.list },
-          { title: 'create', path: PATH_DASHBOARD.user.newUser },
-          { title: 'edit', path: PATH_DASHBOARD.user.editById },
-          { title: 'account', path: PATH_DASHBOARD.user.account }
+          { title: 'doctor', path: PATH_DASHBOARD.user.profile },
+          { title: 'general practitioner', path: PATH_DASHBOARD.user.cards },
+          { title: 'pediatrician', path: PATH_DASHBOARD.user.list }
         ]
       },
-
-      // MANAGEMENT : E-COMMERCE
       {
-        title: 'e-commerce',
-        path: PATH_DASHBOARD.eCommerce.root,
+        title: 'patient',
+        path: PATH_DASHBOARD.user.root,
+        icon: ICONS.user,
+        children: [
+          { title: 'inpatient', path: PATH_DASHBOARD.user.profile },
+          { title: 'outpatient', path: PATH_DASHBOARD.user.cards }
+        ]
+      },
+      {
+        title: 'pharmacy',
+        path: PATH_DASHBOARD.user.root,
         icon: ICONS.cart,
         children: [
-          { title: 'shop', path: PATH_DASHBOARD.eCommerce.shop },
-          { title: 'product', path: PATH_DASHBOARD.eCommerce.productById },
-          { title: 'list', path: PATH_DASHBOARD.eCommerce.list },
-          { title: 'create', path: PATH_DASHBOARD.eCommerce.newProduct },
-          { title: 'edit', path: PATH_DASHBOARD.eCommerce.editById },
-          { title: 'checkout', path: PATH_DASHBOARD.eCommerce.checkout },
-          { title: 'invoice', path: PATH_DASHBOARD.eCommerce.invoice }
+          { title: 'medication', path: PATH_DASHBOARD.user.profile },
+          { title: 'in-hospital pharmacy', path: PATH_DASHBOARD.user.cards },
+          { title: 'outpatient pharmacy', path: PATH_DASHBOARD.user.list }
         ]
       },
-
-      // MANAGEMENT : BLOG
       {
-        title: 'blog',
-        path: PATH_DASHBOARD.blog.root,
-        icon: ICONS.blog,
+        title: 'appointments',
+        path: PATH_DASHBOARD.user.root,
+        icon: ICONS.calendar,
         children: [
-          { title: 'posts', path: PATH_DASHBOARD.blog.posts },
-          { title: 'post', path: PATH_DASHBOARD.blog.postById },
-          { title: 'new post', path: PATH_DASHBOARD.blog.newPost }
+          { title: 'regular checkup', path: PATH_DASHBOARD.user.profile },
+          { title: 'follow up', path: PATH_DASHBOARD.user.cards },
+          { title: 'emergency visit', path: PATH_DASHBOARD.user.list }
         ]
-      }
-    ]
-  },
-
-  // APP
-  // ----------------------------------------------------------------------
-  {
-    subheader: 'app',
-    items: [
-      {
-        title: 'mail',
-        path: PATH_DASHBOARD.mail.root,
-        icon: ICONS.mail,
-        info: <Label color="error">2</Label>
       },
-      { title: 'chat', path: PATH_DASHBOARD.chat.root, icon: ICONS.chat },
-      { title: 'calendar', path: PATH_DASHBOARD.calendar, icon: ICONS.calendar },
       {
-        title: 'kanban',
-        path: PATH_DASHBOARD.kanban,
-        icon: ICONS.kanban
+        title: 'medical Equipment',
+        path: PATH_DASHBOARD.user.root,
+        icon: ICONS.ecommerce,
+        children: [
+          { title: 'imaging equipment', path: PATH_DASHBOARD.user.profile },
+          { title: 'surgical equipment', path: PATH_DASHBOARD.user.cards }
+        ]
+      },
+      {
+        title: 'medical records',
+        path: PATH_DASHBOARD.user.root,
+        icon: ICONS.kanban,
+        children: [
+          { title: 'physical record', path: PATH_DASHBOARD.user.profile },
+          { title: 'digital record', path: PATH_DASHBOARD.user.cards }
+        ]
       }
     ]
   }
+
+  // APP
+  // ----------------------------------------------------------------------
 ];
 
 export default sidebarConfig;
