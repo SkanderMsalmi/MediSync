@@ -1,10 +1,11 @@
-package com.medisync;
+package com.medisync.services;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Iterator;
 
+import com.medisync.interfaces.ServiceInterface;
 import org.apache.jena.query.Query;
 import org.apache.jena.query.QueryExecution;
 import org.apache.jena.query.QueryExecutionFactory;
@@ -12,13 +13,12 @@ import org.apache.jena.query.QueryFactory;
 import org.apache.jena.query.QuerySolution;
 import org.apache.jena.query.ResultSet;
 import org.apache.jena.rdf.model.RDFNode;
-import org.springframework.stereotype.Service;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
-@Service
-public class service implements serviceInterface{
+@org.springframework.stereotype.Service
+public class Service implements ServiceInterface {
 	
 public String query(String nom, String querry) {
 	String fusekiQueryEndpoint = "http://localhost:3030/Hospital/query";
