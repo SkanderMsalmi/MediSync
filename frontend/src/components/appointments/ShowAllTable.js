@@ -28,6 +28,8 @@ const ShowAllTable = ({ appointments }) => (
             <TableRow>
                 <TableCell>Appointment ID</TableCell>
                 <TableCell>Type</TableCell>
+                <TableCell>Patient</TableCell>
+                <TableCell>Doctor</TableCell>
                 <TableCell>Date</TableCell>
                 <TableCell>Time</TableCell>
                 <TableCell>Purpose</TableCell>
@@ -40,8 +42,10 @@ const ShowAllTable = ({ appointments }) => (
                   <TableRow key={i}>
                     <TableCell>{row.appointment.split('#')[1]}</TableCell>
                     <TableCell>{row.type.split('#')[1]}</TableCell>
-                    <TableCell>{row.dateTime.split('^^')[0].split(' ')[0]}</TableCell>
-                    <TableCell>{row.dateTime.split('^^')[0].split(' ')[1]}</TableCell>
+                    <TableCell>{row.patientName}</TableCell>
+                    <TableCell>{row.doctorName}</TableCell>
+                    <TableCell>{row.dateTime.split('^^')[0].split('T')[0]}</TableCell>
+                    <TableCell>{row.dateTime.split('^^')[0].split('T')[1]}</TableCell>
                     <TableCell>{row.purpose.split('^^')[0]}</TableCell>
                   </TableRow>
                 );

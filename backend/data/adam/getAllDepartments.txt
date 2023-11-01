@@ -22,12 +22,6 @@ WHERE {
     ?patient medisync:patientName ?patientName .
   }
 
-  FILTER (?departmentType = medisync:Cardiology ||
-          ?departmentType = medisync:Emergency_Department ||
-          ?departmentType = medisync:Neurology ||
-          ?departmentType = medisync:Orthopedics ||
-          ?departmentType = medisync:Pediatrics ||
-          ?departmentType = medisync:Radiology ||
-          ?departmentType = medisync:Surgical_Department)
+
 }
 GROUP BY ?department ?departmentType ?departmentName ?floorNumber

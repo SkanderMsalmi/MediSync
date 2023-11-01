@@ -2,14 +2,16 @@ PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX medisync: <http://www.medisync.com#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
-SELECT ?department ?departmentName ?floorNumber
+SELECT ?department ?departmentType ?departmentName ?floorNumber
        (GROUP_CONCAT(DISTINCT ?medicalStaffName; SEPARATOR=", ") as ?medicalStaffList)
        (GROUP_CONCAT(DISTINCT ?equipmentName; SEPARATOR=", ") as ?equipmentList)
        (GROUP_CONCAT(DISTINCT ?patientName; SEPARATOR=", ") as ?patientList)
 WHERE {
-  ?department rdf:type medisync:Neurology ;
+  ?department rdf:type ?departmentType ;
              medisync:departmentName ?departmentName ;
              medisync:departmentFloorNumber ?floorNumber .
+
+  ?departmentType rdfs:subClassOf medisync:Department .
   
   OPTIONAL {
     ?department medisync:hasMedicalStaff ?medicalStaff .
@@ -20,5 +22,9 @@ WHERE {
     ?patient medisync:patientName ?patientName .
   }
 
+
+  ?department medisync:usesEquipment ?equipment .
+  ?equipment rdf:type ?equipmentType .
+  FILTER (?equipmentType = medisync:Surgical_Robot || ?equipmentType = medisync:Scalpel)
 }
-GROUP BY ?department ?departmentName ?floorNumber
+GROUP BY ?department ?departmentType ?departmentName ?floorNumber

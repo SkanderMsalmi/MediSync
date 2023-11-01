@@ -43,8 +43,8 @@ const ShowAllRegular = ({ appointments }) => (
                     <TableCell>{row.patientName}</TableCell>
                     <TableCell>{row.doctorName}</TableCell>
                     <TableCell>{row.purpose.split('^^')[0]}</TableCell>
-                    <TableCell>{row.dateTime.split('^^')[0].split(' ')[0]}</TableCell>
-                    <TableCell>{row.dateTime.split('^^')[0].split(' ')[1]}</TableCell>
+                    <TableCell>{row.dateTime.split('^^')[0].split('T')[0]}</TableCell>
+                    <TableCell>{row.dateTime.split('^^')[0].split('T')[1]}</TableCell>
                   </TableRow>
                 );
             })}

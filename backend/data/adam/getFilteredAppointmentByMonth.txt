@@ -13,5 +13,12 @@ WHERE {
   ?doctor medisync:staffName ?doctorName .
   ?patient medisync:patientName ?patientName .
   
-  FILTER (?type = medisync:Follow-up || ?type = medisync:Emergency_Visit || ?type = medisync:Regular_Checkup)
+  FILTER (
+    ?type = medisync:Follow-up || 
+    ?type = medisync:Emergency_Visit || 
+    ?type = medisync:Regular_Checkup
+  )
+  
+  # Extract the month from the appointment date and compare it with the current month
+  FILTER (MONTH(?dateTime) = MONTH(NOW()))
 }
