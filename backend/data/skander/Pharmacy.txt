@@ -1,0 +1,24 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX medisync: <http://www.medisync.com#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?pharmacy ?type ?name ?location ?locatedInHospital ?dispensesMedicationTo
+WHERE {
+  {
+    ?pharmacy rdf:type/rdfs:subClassOf* medisync:Pharmacy .
+  }
+  UNION
+  {
+    ?pharmacy rdf:type/rdfs:subClassOf* medisync:In-Hospital_Pharmacy .
+  }
+  UNION
+  {
+    ?pharmacy rdf:type/rdfs:subClassOf* medisync:Outpatient_Pharmacy .
+  }
+  OPTIONAL { ?pharmacy rdf:type ?type }
+  OPTIONAL { ?pharmacy medisync:pharmacyName ?name }
+  OPTIONAL { ?pharmacy medisync:pharmacyLocation ?location }
+  OPTIONAL { ?pharmacy medisync:locatedInHospital ?locatedInHospital }
+  OPTIONAL { ?pharmacy medisync:dispencesMedicationTo ?dispensesMedicationTo }
+}
