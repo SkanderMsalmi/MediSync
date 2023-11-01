@@ -19,7 +19,7 @@ import com.google.gson.JsonObject;
 
 @org.springframework.stereotype.Service
 public class Service implements ServiceInterface {
-	
+
 public String query(String nom, String querry) {
 	String fusekiQueryEndpoint = "http://localhost:3030/hospital/query";
 	 
@@ -64,7 +64,7 @@ public String query(String nom, String querry) {
             return(jsonArray.toString());
         }
     } catch (IOException e) {
-        return("Erreur : " + e.getMessage());
+        return("Erreur : " + e);
     }
 }
 

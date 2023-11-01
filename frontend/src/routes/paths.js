@@ -80,9 +80,17 @@ export const PATH_DASHBOARD = {
   department: path(ROOTS_DASHBOARD, '/department'),
   medicalStaff: path(ROOTS_DASHBOARD, '/medical-staff'),
   patient: path(ROOTS_DASHBOARD, '/patient'),
-  pharmacy: path(ROOTS_DASHBOARD, '/pharmacy'),
+  pharmacy: {
+    root: path(ROOTS_DASHBOARD, '/pharmacy'),
+    inHospital: path(ROOTS_DASHBOARD, '/pharmacy/inHospital'),
+    outpatient: path(ROOTS_DASHBOARD, '/pharmacy/outPatient')
+  },
   appointments: path(ROOTS_DASHBOARD, '/appointments'),
-  medicalEquipment: path(ROOTS_DASHBOARD, '/medical-equipment'),
+  medicalEquipment: {
+    root: path(ROOTS_DASHBOARD, '/medical-equipment'),
+    imagingEquip: path(ROOTS_DASHBOARD, '/medical-equipment/imaging-equipment'),
+    surgicalEquip: path(ROOTS_DASHBOARD, '/medical-equipment/surgical-equipment')
+  },
   medicalRecords: path(ROOTS_DASHBOARD, '/medical-records')
 };
 

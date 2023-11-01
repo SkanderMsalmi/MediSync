@@ -80,12 +80,12 @@ const sidebarConfig = [
       },
       {
         title: 'pharmacy',
-        path: PATH_DASHBOARD.pharmacy,
+        path: PATH_DASHBOARD.pharmacy.root,
         icon: ICONS.cart,
         children: [
-          { title: 'medication', path: PATH_DASHBOARD.pharmacy },
-          { title: 'in-hospital pharmacy', path: PATH_DASHBOARD.pharmacy },
-          { title: 'outpatient pharmacy', path: PATH_DASHBOARD.pharmacy }
+          { title: 'All', path: PATH_DASHBOARD.pharmacy.root },
+          { title: 'in-hospital pharmacy', path: PATH_DASHBOARD.pharmacy.inHospital },
+          { title: 'outpatient pharmacy', path: PATH_DASHBOARD.pharmacy.outpatient }
         ]
       },
       {
@@ -100,11 +100,12 @@ const sidebarConfig = [
       },
       {
         title: 'medical Equipment',
-        path: PATH_DASHBOARD.medicalEquipment,
+        path: PATH_DASHBOARD.medicalEquipment.root,
         icon: ICONS.ecommerce,
         children: [
-          { title: 'imaging equipment', path: PATH_DASHBOARD.medicalEquipment },
-          { title: 'surgical equipment', path: PATH_DASHBOARD.medicalEquipment }
+          { title: 'All', path: PATH_DASHBOARD.medicalEquipment.root },
+          { title: 'imaging equipment', path: PATH_DASHBOARD.medicalEquipment.imagingEquip },
+          { title: 'surgical equipment', path: PATH_DASHBOARD.medicalEquipment.surgicalEquip }
         ]
       },
       {

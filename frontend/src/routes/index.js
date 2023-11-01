@@ -120,9 +120,8 @@ export default function Router() {
           path: 'pharmacy',
           element: <Pharmacy />,
           children: [
-            { path: 'medication', element: <Medication /> },
             { path: 'inHospital', element: <InHospital /> },
-            { path: 'outHospital', element: <OutHospital /> }
+            { path: 'outPatient', element: <OutHospital /> }
           ]
         },
         {
@@ -139,7 +138,7 @@ export default function Router() {
           element: <MedicalEquipment />,
           children: [
             { path: 'imaging-equipment', element: <ImagingEquipment /> },
-            { path: 'surgical-equipment', element: <SurgicalDepartmenet /> }
+            { path: 'surgical-equipment', element: <SurgicalEquipment /> }
           ]
         },
         {
