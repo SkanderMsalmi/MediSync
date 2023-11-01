@@ -1,0 +1,29 @@
+PREFIX hospital: <http://www.semanticweb.org/hospital/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+PREFIX hospital: <http://www.semanticweb.org/hospital/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+SELECT ?hospitalName ?hospitalType ?hospitalAddress ?hospitalBeds ?hospitalContact ?departmentName ?managedPharmacyName
+WHERE {
+  ?hospital rdf:type ?hospitalType.
+  FILTER (?hospitalType = <http://www.medisync.com#Public_Hospital> || ?hospitalType = <http://www.medisync.com#Private_Hospital>)
+
+  ?hospital <http://www.medisync.com#hospitalName> ?hospitalName.
+  OPTIONAL { ?hospital <http://www.medisync.com#hospitalAddress> ?hospitalAddress. }
+  OPTIONAL { ?hospital <http://www.medisync.com#hospitalNumberOfBeds> ?hospitalBeds. }
+  OPTIONAL { ?hospital <http://www.medisync.com#hospitalContactInfo> ?hospitalContact. }
+
+  # Fetch the related department and pharmacy names
+  OPTIONAL {
+    ?hospital <http://www.medisync.com#hasDepartment> ?department.
+    ?department <http://www.medisync.com#departmentName> ?departmentName.
+  }
+
+  OPTIONAL {
+    ?hospital <http://www.medisync.com#managesPharmacy> ?managedPharmacy.
+    ?managedPharmacy <http://www.medisync.com#pharmacyName> ?managedPharmacyName.
+  }
+
+  FILTER (?hospitalBeds > 200)
+}
+ORDER BY DESC(?hospitalBeds)
