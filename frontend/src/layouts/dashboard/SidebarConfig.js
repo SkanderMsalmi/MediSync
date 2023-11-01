@@ -47,16 +47,16 @@ const sidebarConfig = [
       },
       {
         title: 'department',
-        path: PATH_DASHBOARD.department,
+        path: PATH_DASHBOARD.department.root,
         icon: ICONS.banking,
         children: [
-          { title: 'surgical department', path: PATH_DASHBOARD.department },
-          { title: 'emergency department', path: PATH_DASHBOARD.department },
-          { title: 'pediatrics', path: PATH_DASHBOARD.department },
-          { title: 'radiology', path: PATH_DASHBOARD.department },
-          { title: 'cardiology', path: PATH_DASHBOARD.department },
-          { title: 'neurology', path: PATH_DASHBOARD.department },
-          { title: 'orthopedics', path: PATH_DASHBOARD.department }
+          { title: 'surgical department', path: PATH_DASHBOARD.department.surgical },
+          { title: 'emergency department', path: PATH_DASHBOARD.department.emergency },
+          { title: 'pediatrics', path: PATH_DASHBOARD.department.pediatrics },
+          { title: 'radiology', path: PATH_DASHBOARD.department.radiology },
+          { title: 'cardiology', path: PATH_DASHBOARD.department.cardiology },
+          { title: 'neurology', path: PATH_DASHBOARD.department.neurology },
+          { title: 'orthopedics', path: PATH_DASHBOARD.department.orthopedics }
         ]
       },
       {
@@ -90,12 +90,12 @@ const sidebarConfig = [
       },
       {
         title: 'appointments',
-        path: PATH_DASHBOARD.appointments,
+        path: PATH_DASHBOARD.appointments.root,
         icon: ICONS.calendar,
         children: [
-          { title: 'regular checkup', path: PATH_DASHBOARD.appointments },
-          { title: 'follow up', path: PATH_DASHBOARD.appointments },
-          { title: 'emergency visit', path: PATH_DASHBOARD.appointments }
+          { title: 'regular checkup', path: PATH_DASHBOARD.appointments.regularCheckup },
+          { title: 'follow up', path: PATH_DASHBOARD.appointments.followUp },
+          { title: 'emergency visit', path: PATH_DASHBOARD.appointments.emergencyVisit }
         ]
       },
       {

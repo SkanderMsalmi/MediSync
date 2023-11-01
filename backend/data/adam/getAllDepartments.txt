@@ -1,0 +1,33 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX medisync: <http://www.medisync.com#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?department ?departmentType ?departmentName ?floorNumber
+       (GROUP_CONCAT(DISTINCT ?medicalStaffName; SEPARATOR=", ") as ?medicalStaffList)
+       (GROUP_CONCAT(DISTINCT ?equipmentName; SEPARATOR=", ") as ?equipmentList)
+       (GROUP_CONCAT(DISTINCT ?patientName; SEPARATOR=", ") as ?patientList)
+WHERE {
+  ?department rdf:type ?departmentType ;
+             medisync:departmentName ?departmentName ;
+             medisync:departmentFloorNumber ?floorNumber .
+
+  ?departmentType rdfs:subClassOf medisync:Department .
+  
+  OPTIONAL {
+    ?department medisync:hasMedicalStaff ?medicalStaff .
+    ?medicalStaff medisync:staffName ?medicalStaffName .
+    ?department medisync:usesEquipment ?equipment .
+    ?equipment medisync:equipmentName ?equipmentName .
+    ?department medisync:treatsPatient ?patient .
+    ?patient medisync:patientName ?patientName .
+  }
+
+  FILTER (?departmentType = medisync:Cardiology ||
+          ?departmentType = medisync:Emergency_Department ||
+          ?departmentType = medisync:Neurology ||
+          ?departmentType = medisync:Orthopedics ||
+          ?departmentType = medisync:Pediatrics ||
+          ?departmentType = medisync:Radiology ||
+          ?departmentType = medisync:Surgical_Department)
+}
+GROUP BY ?department ?departmentType ?departmentName ?floorNumber

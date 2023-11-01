@@ -28,7 +28,6 @@ export default function MailSidebar({ isOpenSidebar, onOpenCompose, onCloseSideb
     if (isOpenSidebar) {
       onCloseSidebar();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
   const handleOpenCompose = () => {

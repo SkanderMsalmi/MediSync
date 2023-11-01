@@ -77,11 +77,26 @@ export const PATH_DASHBOARD = {
     newPost: path(ROOTS_DASHBOARD, '/blog/new-post')
   },
   hospital: path(ROOTS_DASHBOARD, '/hospital'),
-  department: path(ROOTS_DASHBOARD, '/department'),
+  department: {
+      root: path(ROOTS_DASHBOARD, '/department'),
+      orthopedics: path(ROOTS_DASHBOARD, '/department/orthopedics'),
+      radiology: path(ROOTS_DASHBOARD, '/department/radiology'),
+      surgical: path(ROOTS_DASHBOARD, '/department/surgical'),
+      pediatrics: path(ROOTS_DASHBOARD, '/department/pediatrics'),
+      cardiology: path(ROOTS_DASHBOARD, '/department/cardiology'),
+      emergency: path(ROOTS_DASHBOARD, '/department/emergency'),
+      neurology: path(ROOTS_DASHBOARD, '/department/neurology')
+  },
   medicalStaff: path(ROOTS_DASHBOARD, '/medical-staff'),
   patient: path(ROOTS_DASHBOARD, '/patient'),
   pharmacy: path(ROOTS_DASHBOARD, '/pharmacy'),
-  appointments: path(ROOTS_DASHBOARD, '/appointments'),
+  appointments: {
+    root: path(ROOTS_DASHBOARD, '/appointments'),
+    regularCheckup: path(ROOTS_DASHBOARD, '/appointments/regular-checkup'),
+    followUp: path(ROOTS_DASHBOARD, '/appointments/followUp'),
+    emergencyVisit: path(ROOTS_DASHBOARD, '/appointments/emergencyVisit')
+  },
+
   medicalEquipment: path(ROOTS_DASHBOARD, '/medical-equipment'),
   medicalRecords: path(ROOTS_DASHBOARD, '/medical-records')
 };
