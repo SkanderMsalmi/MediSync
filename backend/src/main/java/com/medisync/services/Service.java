@@ -19,9 +19,9 @@ import com.google.gson.JsonObject;
 
 @org.springframework.stereotype.Service
 public class Service implements ServiceInterface {
-	
+
 public String query(String nom, String querry) {
-	String fusekiQueryEndpoint = "http://localhost:3030/Hospital/query";
+	String fusekiQueryEndpoint = "http://localhost:3030/hospital/query";
 	 
     String queryFilePath = "data/"+nom+"/"+querry+".txt";
 
@@ -64,7 +64,7 @@ public String query(String nom, String querry) {
             return(jsonArray.toString());
         }
     } catch (IOException e) {
-        return("zebi");
+        return("Erreur : " + e);
     }
 }
 
