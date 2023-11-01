@@ -9,30 +9,26 @@ import {
   TableBody,
   TableCell,
   Container,
-  Typography,
   TableContainer,
   TablePagination
 } from '@material-ui/core';
-import { useTheme, styled } from '@material-ui/core/styles';
-import { Link as RouterLink } from 'react-router-dom';
+import { useTheme } from '@material-ui/core/styles';
 import { useState, useEffect } from 'react';
-import { Icon } from '@iconify/react';
-import plusFill from '@iconify/icons-eva/plus-fill';
-import { fDate } from '../../utils/formatTime'; // If you have a date formatting function, otherwise use a standard date library
+import { fDate } from '../../utils/formatTime'; 
 
 const TABLE_HEAD = [
   { id: 'select', label: 'Select', alignRight: false },
-  { id: 'staffName', label: 'Doctor Name', alignRight: false },
+  { id: 'staffName', label: 'Nurse Name', alignRight: false },
   { id: 'worksInDepartment', label: 'Department', alignRight: false },
   { id: 'staffEmploymentDate', label: 'Employment Date', alignRight: false },
   { id: 'staffContactInfo', label: 'Contact', alignRight: false },
-  { id: 'treatedPatients', label: 'Treated Patients', alignRight: false },
+  { id: 'treatedPatients', label: 'Assisted Patients', alignRight: false },
   { id: '' }
 ];
 
-export default function DoctorsList() {
+export default function NursesList() {
   const theme = useTheme();
-  const [doctors, setDoctors] = useState([]);
+  const [nurses, setNurses] = useState([]);
   const [page, setPage] = useState(0);
   const [selected, setSelected] = useState([]);
   const [filterName, setFilterName] = useState('');
@@ -41,21 +37,17 @@ export default function DoctorsList() {
   const fetchData = (endpoint) => {
     fetch(endpoint)
       .then((response) => response.json())
-      .then((data) => setDoctors(data))
-      .catch((error) => console.error("Error fetching doctors:", error));
+      .then((data) => setNurses(data))
+      .catch((error) => console.error("Error fetching nurses:", error));
   };
 
   useEffect(() => {
-    // Fetch doctors from the backend
-    fetch("http://localhost:8080/hospital/show/jasser/getAllDoctors")
-      .then((response) => response.json())
-      .then((data) => setDoctors(data))
-      .catch((error) => console.error("Error fetching doctors:", error));
+    fetchData("http://localhost:8080/hospital/show/jasser/getAllNurses");
   }, []);
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelecteds = doctors.map((n) => n.staffName);
+      const newSelecteds = nurses.map((n) => n.staffName);
       setSelected(newSelecteds);
       return;
     }
@@ -66,46 +58,36 @@ export default function DoctorsList() {
     setFilterName(event.target.value);
   };
 
-  const filteredDoctors = doctors.filter(
-    (doctor) => !filterName || doctor.staffName.toLowerCase().includes(filterName.toLowerCase())
+  const filteredNurses = nurses.filter(
+    (nurse) => !filterName || nurse.staffName.toLowerCase().includes(filterName.toLowerCase())
   );
 
   return (
-    
     <Container maxWidth="lg">
       <Button 
           variant="contained" 
           color="primary" 
           style={{ marginRight: theme.spacing(1) }}
-          onClick={() => fetchData("http://localhost:8080/hospital/show/jasser/getAllDoctors")}
+          onClick={() => fetchData("http://localhost:8080/hospital/show/jasser/getAllNurses")}
         >
-          All doctors
+          All Nurses
         </Button>
       <Box display="flex" justifyContent="center" marginBottom={2}>
         <Button 
           variant="contained" 
           color="primary" 
           style={{ marginRight: theme.spacing(1) }}
-          onClick={() => fetchData("http://localhost:8080/hospital/show/jasser/getGeneralPractitioners")}
+          onClick={() => fetchData("http://localhost:8080/hospital/show/jasser/getHeadNurses")}
         >
-          General Practitioners
+          Head Nurses
         </Button>
 
         <Button 
           variant="contained" 
           color="primary" 
-          style={{ marginRight: theme.spacing(1) }}
-          onClick={() => fetchData("http://localhost:8080/hospital/show/jasser/getPediatricians")}
+          onClick={() => fetchData("http://localhost:8080/hospital/show/jasser/getRegisteredNurses")}
         >
-          Pediatricians
-        </Button>
-
-        <Button 
-          variant="contained" 
-          color="primary" 
-          onClick={() => fetchData("http://localhost:8080/hospital/show/jasser/getSurgeons")}
-        >
-          Surgeons
+          Registered Nurses
         </Button>
       </Box>
       <Card>
@@ -119,13 +101,13 @@ export default function DoctorsList() {
               </TableRow>
             </TableBody>
             <TableBody>
-              {filteredDoctors.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((doctor) => {
-                const isItemSelected = selected.indexOf(doctor.staffName) !== -1;
+              {filteredNurses.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((nurse) => {
+                const isItemSelected = selected.indexOf(nurse.staffName) !== -1;
 
                 return (
                   <TableRow
                     hover
-                    key={doctor.doctor}
+                    key={nurse.nurse}
                     tabIndex={-1}
                     role="checkbox"
                     selected={isItemSelected}
@@ -133,20 +115,20 @@ export default function DoctorsList() {
                     <TableCell padding="checkbox">
                       <Checkbox checked={isItemSelected} onChange={() => {
                         const newSelecteds = [...selected];
-                        const selectedIndex = selected.indexOf(doctor.staffName);
+                        const selectedIndex = selected.indexOf(nurse.staffName);
                         if (selectedIndex === -1) {
-                          newSelecteds.push(doctor.staffName);
+                          newSelecteds.push(nurse.staffName);
                         } else {
                           newSelecteds.splice(selectedIndex, 1);
                         }
                         setSelected(newSelecteds);
                       }} />
                     </TableCell>
-                    <TableCell>{doctor.staffName}</TableCell>
-                    <TableCell>{doctor.worksInDepartment}</TableCell>
-                    <TableCell>{fDate(doctor.staffEmploymentDate)}</TableCell>
-                    <TableCell>{doctor.staffContactInfo}</TableCell>
-                    <TableCell>{doctor.treatedPatients}</TableCell>
+                    <TableCell>{nurse.staffName}</TableCell>
+                    <TableCell>{nurse.worksInDepartment}</TableCell>
+                    <TableCell>{nurse.staffEmploymentDate}</TableCell>
+                    <TableCell>{nurse.staffContactInfo}</TableCell>
+                    <TableCell>{nurse.assistedPatients}</TableCell>
                   </TableRow>
                 );
               })}
@@ -157,7 +139,7 @@ export default function DoctorsList() {
         <TablePagination
           rowsPerPageOptions={[5, 10, 25]}
           component="div"
-          count={doctors.length}
+          count={nurses.length}
           rowsPerPage={rowsPerPage}
           page={page}
           onPageChange={(event, newPage) => setPage(newPage)}

@@ -1,0 +1,28 @@
+PREFIX medisync: <http://www.medisync.com#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?technician 
+       (GROUP_CONCAT(IF(?propLocal = "staffContactInfo", ?value, ""); separator="") AS ?staffContactInfo)
+       (GROUP_CONCAT(IF(?propLocal = "staffEmploymentDate", ?value, ""); separator="") AS ?staffEmploymentDate)
+       (GROUP_CONCAT(IF(?propLocal = "staffName", ?value, ""); separator="") AS ?staffName)
+       (GROUP_CONCAT(DISTINCT ?equipmentName; separator=",") AS ?operatesEquipment)
+       (GROUP_CONCAT(DISTINCT ?departmentName; separator=",") AS ?worksInDepartment)
+WHERE {
+  ?technician a/rdfs:subClassOf* medisync:Lab_Technician .
+  ?technician ?dataProperty ?value .
+  
+  OPTIONAL {
+    ?technician medisync:operatesEquipment ?equipment .
+    ?equipment medisync:equipmentName ?equipmentName .  # Assuming you have labels on the equipment. Adjust if needed.
+  }
+  
+  OPTIONAL {
+    ?technician medisync:worksInDepartment ?department .
+    ?department medisync:departmentName ?departmentName .
+  }
+  
+  FILTER isLiteral(?value) 
+  BIND(STRAFTER(STR(?dataProperty), "#") AS ?propLocal)
+}
+GROUP BY ?technician
+ORDER BY ?technician

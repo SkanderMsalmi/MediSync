@@ -1,7 +1,9 @@
+/* eslint-disable */
 import React from 'react';
+import { Outlet } from 'react-router';
 
 function Patient() {
-  return <div>Patient</div>;
+  return <Outlet/>;
 }
 
 export default Patient;
