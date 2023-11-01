@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import ShowSubDep from '../../components/departments/ShowSubDep';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import ShowSubDep from "../../components/departments/ShowSubDep";
+import axios from "axios";
 
 function Neurology() {
   const [departments, setDepartments] = useState([]);
@@ -8,13 +8,13 @@ function Neurology() {
   useEffect(() => {
     // Make an Axios GET request to fetch the data from your endpoint
     axios
-      .get('http://localhost:8081/hospital/show/adam/getAllNeurology')
+      .get("http://localhost:8080/hospital/show/adam/getAllNeurology")
       .then((response) => {
         // Update the state with the fetched data
         setDepartments(response.data);
       })
       .catch((error) => {
-        console.error('Error fetching data:', error);
+        console.error("Error fetching data:", error);
       });
   }, []);
   return <ShowSubDep departments={departments} type="Neurology" />;
