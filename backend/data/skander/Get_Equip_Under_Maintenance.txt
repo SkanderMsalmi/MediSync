@@ -44,5 +44,7 @@ WHERE {
   }
 
   OPTIONAL { ?equipment ?objectProperty ?objectProperty }
+
+  FILTER (?status = "Under Maintenance" )
 }
 GROUP BY ?equipment

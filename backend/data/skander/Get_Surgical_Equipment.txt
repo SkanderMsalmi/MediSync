@@ -13,15 +13,8 @@ SELECT ?equipment
        (GROUP_CONCAT(DISTINCT ?departmentName; SEPARATOR=", ") AS ?sampleDepartmentNames)
        (GROUP_CONCAT(DISTINCT ?patientName; SEPARATOR=", ") AS ?samplePatientNames)
        (GROUP_CONCAT(DISTINCT ?staffName; SEPARATOR=", ") AS ?sampleTechnicians)
-       (GROUP_CONCAT(DISTINCT ?objectProperty; SEPARATOR=", ") AS ?sampleObjectProperties)
 WHERE {
-  {
-    ?equipment rdf:type/rdfs:subClassOf* medisync:Imaging_Equipment .
-  }
-  UNION
-  {
-    ?equipment rdf:type/rdfs:subClassOf* medisync:Surgical_Equipment .
-  }
+  ?equipment rdf:type/rdfs:subClassOf* medisync:Surgical_Equipment .
   OPTIONAL { ?equipment rdf:type ?type }
   OPTIONAL { ?equipment medisync:equipmentStatus ?status }
   OPTIONAL { ?equipment medisync:equipmentPurchaseDate ?purchaseDate }
@@ -42,7 +35,5 @@ WHERE {
     ?equipment medisync:operatedBy ?operatedBy .
     ?operatedBy medisync:staffName ?staffName
   }
-
-  OPTIONAL { ?equipment ?objectProperty ?objectProperty }
 }
 GROUP BY ?equipment

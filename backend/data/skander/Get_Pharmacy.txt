@@ -3,7 +3,12 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX medisync: <http://www.medisync.com#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
-SELECT ?pharmacy ?type ?name ?location ?locatedInHospital ?dispensesMedicationTo
+SELECT ?pharmacy
+       (SAMPLE(?type) AS ?sampleType)
+       (SAMPLE(?name) AS ?sampleName)
+       (SAMPLE(?location) AS ?sampleLocation)
+       (GROUP_CONCAT(DISTINCT ?patientName; SEPARATOR=", ") AS ?samplePatients)
+       (GROUP_CONCAT(DISTINCT ?hospitalName; SEPARATOR=", ") AS ?sampleHospitals)
 WHERE {
   {
     ?pharmacy rdf:type/rdfs:subClassOf* medisync:Pharmacy .
@@ -19,6 +24,13 @@ WHERE {
   OPTIONAL { ?pharmacy rdf:type ?type }
   OPTIONAL { ?pharmacy medisync:pharmacyName ?name }
   OPTIONAL { ?pharmacy medisync:pharmacyLocation ?location }
-  OPTIONAL { ?pharmacy medisync:locatedInHospital ?locatedInHospital }
-  OPTIONAL { ?pharmacy medisync:dispencesMedicationTo ?dispensesMedicationTo }
+  OPTIONAL {
+    ?pharmacy medisync:dispencesMedicationTo ?patient .
+    ?patient medisync:patientName ?patientName
+  }
+  OPTIONAL {
+    ?pharmacy medisync:locatedInHospital ?hospital .
+    ?hospital medisync:hospitalName ?hospitalName
+  }
 }
+GROUP BY ?pharmacy

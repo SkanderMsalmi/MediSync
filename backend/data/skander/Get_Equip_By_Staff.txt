@@ -44,5 +44,8 @@ WHERE {
   }
 
   OPTIONAL { ?equipment ?objectProperty ?objectProperty }
+
+
+  FILTER (str(?staffName) = "Skander" )
 }
 GROUP BY ?equipment
