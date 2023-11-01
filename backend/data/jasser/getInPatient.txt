@@ -1,0 +1,35 @@
+PREFIX medisync: <http://www.medisync.com#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?patient 
+       (GROUP_CONCAT(IF(?propLocal = "patientName", ?value, ""); separator="") AS ?patientName)
+       (GROUP_CONCAT(IF(?propLocal = "patientAddress", ?value, ""); separator="") AS ?patientAddress)
+       (GROUP_CONCAT(IF(?propLocal = "patienAge", ?value, ""); separator="") AS ?patientAge)
+       (GROUP_CONCAT(IF(?propLocal = "patientMedicalHistory", ?value, ""); separator="") AS ?patientMedicalHistory)
+       (GROUP_CONCAT(DISTINCT ?doctorName; separator="") AS ?treatedBy)
+       (GROUP_CONCAT(DISTINCT ?AppointmentDateTime; separator="") AS ?hasAppointment)
+       (GROUP_CONCAT(DISTINCT ?recordPrescription; separator=",") AS ?hasMedicalRecord)
+WHERE {
+  ?patient a/rdfs:subClassOf* medisync:Inpatient .
+  ?patient ?dataProperty ?value .
+  
+  OPTIONAL {
+    ?patient medisync:treatedBy ?doctor .
+    ?doctor medisync:staffName ?doctorName .
+  }
+  
+  OPTIONAL {
+    ?patient medisync:hasAppointment ?Appointment .
+    ?Appointment medisync:appointmentDateTime ?AppointmentDateTime .
+  }
+  
+  OPTIONAL {
+    ?patient medisync:hasMedicalRecord ?record .
+    ?record medisync:recordPrescription ?recordPrescription .
+  }
+  
+  FILTER isLiteral(?value) 
+  BIND(STRAFTER(STR(?dataProperty), "#") AS ?propLocal)
+}
+GROUP BY ?patient
+ORDER BY ?patient

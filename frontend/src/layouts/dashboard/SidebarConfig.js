@@ -61,22 +61,18 @@ const sidebarConfig = [
       },
       {
         title: 'medical Staff',
-        path: PATH_DASHBOARD.medicalstaff,
+        path: PATH_DASHBOARD.medicalStaff.root,
         icon: ICONS.user,
         children: [
-          { title: 'doctor', path: PATH_DASHBOARD.medicalStaff },
-          { title: 'general practitioner', path: PATH_DASHBOARD.medicalStaff },
-          { title: 'pediatrician', path: PATH_DASHBOARD.medicalStaff }
+          { title: 'doctor', path: PATH_DASHBOARD.medicalStaff.doctor },
+          { title: 'nurse', path: PATH_DASHBOARD.medicalStaff.nurse },
+          { title: 'technician', path: PATH_DASHBOARD.medicalStaff.technician }
         ]
       },
       {
         title: 'patient',
         path: PATH_DASHBOARD.patient,
-        icon: ICONS.user,
-        children: [
-          { title: 'inpatient', path: PATH_DASHBOARD.patient },
-          { title: 'outpatient', path: PATH_DASHBOARD.patient }
-        ]
+        icon: ICONS.user
       },
       {
         title: 'pharmacy',

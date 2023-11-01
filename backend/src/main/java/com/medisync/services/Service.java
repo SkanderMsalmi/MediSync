@@ -64,7 +64,7 @@ public String query(String nom, String querry) {
             return(jsonArray.toString());
         }
     } catch (IOException e) {
-        return("zebi");
+        return(e.toString());
     }
 }
 

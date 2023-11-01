@@ -1,3 +1,4 @@
+/* eslint-disable */
 // ----------------------------------------------------------------------
 
 function path(root, sublink) {
@@ -78,7 +79,13 @@ export const PATH_DASHBOARD = {
   },
   hospital: path(ROOTS_DASHBOARD, '/hospital'),
   department: path(ROOTS_DASHBOARD, '/department'),
-  medicalStaff: path(ROOTS_DASHBOARD, '/medical-staff'),
+  medicalStaff:{
+    root : path(ROOTS_DASHBOARD, '/medical-staff'),
+    doctor: path(ROOTS_DASHBOARD, '/medical-staff/doctors'),
+    nurse: path(ROOTS_DASHBOARD, '/medical-staff/nurses'),
+    technician: path(ROOTS_DASHBOARD, '/medical-staff/technicians'),
+  } ,
+  
   patient: path(ROOTS_DASHBOARD, '/patient'),
   pharmacy: path(ROOTS_DASHBOARD, '/pharmacy'),
   appointments: path(ROOTS_DASHBOARD, '/appointments'),
