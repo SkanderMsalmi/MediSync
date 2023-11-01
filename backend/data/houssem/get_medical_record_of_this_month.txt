@@ -1,0 +1,20 @@
+PREFIX medisync: <http://www.medisync.com#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema-datatypes>
+
+SELECT ?medicalRecord ?patientName ?recordType ?recordDate ?recordPrescription ?recordDiagnosis ?recordTreatmentHistory ?recordedByDR
+WHERE {
+  ?medicalRecord rdf:type ?recordType.
+  VALUES (?recordType) { (medisync:Digital_Record) (medisync:Physical_Record) }
+  ?medicalRecord medisync:belongsToPatient ?patient.
+  ?patient medisync:patientName ?patientName.
+  ?medicalRecord medisync:recordDate ?recordDate.
+  ?medicalRecord medisync:recordPrescription ?recordPrescription.
+  ?medicalRecord medisync:recordDiagnosis ?recordDiagnosis.
+  ?medicalRecord medisync:recordTreatmentHistory ?recordTreatmentHistory.
+  ?medicalRecord medisync:recordedBy ?recordedBy.
+  ?recordedBy medisync:staffName ?recordedByDR.
+
+  FILTER (MONTH(?recordDate) = MONTH(NOW()) && YEAR(?recordDate) = YEAR(NOW()))
+}
+ORDER BY ASC(?recordedByDR)
