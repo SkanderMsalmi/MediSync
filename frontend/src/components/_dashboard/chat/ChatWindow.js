@@ -63,7 +63,6 @@ export default function ChatWindow() {
     } else if (activeConversationId) {
       dispatch(resetActiveConversation());
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [conversationKey]);
 
   useEffect(() => {

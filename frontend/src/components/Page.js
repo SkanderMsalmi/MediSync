@@ -16,7 +16,6 @@ const Page = forwardRef(({ children, title = '', ...other }, ref) => {
     track.pageview({
       page_path: pathname
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

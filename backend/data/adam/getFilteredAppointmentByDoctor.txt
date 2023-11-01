@@ -1,0 +1,18 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX medisync: <http://www.medisync.com#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?appointment ?type ?dateTime ?purpose ?doctor ?doctorName ?patient ?patientName
+WHERE {
+  ?appointment rdf:type ?type ;
+               medisync:appointmentDateTime ?dateTime ;
+               medisync:appointmentPurpose ?purpose ;
+               medisync:scheduledWith ?doctor ;
+               medisync:scheduledFor ?patient .
+  
+  ?doctor a/rdfs:subClassOf* medisync:Doctor ;
+          medisync:staffName ?doctorName .
+  ?patient medisync:patientName ?patientName .
+  
+  FILTER (?type = medisync:Follow-up || ?type = medisync:Emergency_Visit || ?type = medisync:Regular_Checkup)
+}
