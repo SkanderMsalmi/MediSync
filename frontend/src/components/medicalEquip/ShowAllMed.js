@@ -29,7 +29,7 @@ function ShowAllMed({ equipments }) {
               <TableHead>
                 <TableRow>
                   <TableCell>Name</TableCell>
-                  <TableCell>Type</TableCell>
+
                   <TableCell>Status</TableCell>
                   <TableCell>Manu Facturer</TableCell>
                   <TableCell>Purchase Date</TableCell>
@@ -44,7 +44,7 @@ function ShowAllMed({ equipments }) {
                   return (
                     <TableRow key={i}>
                       <TableCell>{row.sampleName}</TableCell>
-                      <TableCell>{row.sampleType.split("#")[1]}</TableCell>
+
                       <TableCell>
                         {row.sampleStatus === "Operational" ? (
                           <Button variant="contained" color="success">
@@ -67,7 +67,7 @@ function ShowAllMed({ equipments }) {
                           .replace("T", " at ")}
                       </TableCell>
 
-                      <TableCell>{row.sampleTechnicians}</TableCell>
+                      <TableCell>Tech. {row.sampleTechnicians}</TableCell>
                       <TableCell>{row.sampleDepartmentNames}</TableCell>
                       <TableCell>
                         {row.samplePatientNames
