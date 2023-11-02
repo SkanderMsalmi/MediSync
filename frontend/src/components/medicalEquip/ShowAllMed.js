@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   Box,
   Card,
@@ -11,18 +11,17 @@ import {
   TableCell,
   TableHead,
   CardHeader,
-  TableContainer
-} from '@material-ui/core';
+  TableContainer,
+} from "@material-ui/core";
 
-import Scrollbar from '../Scrollbar';
-import Label from '../Label';
-import { sentenceCase } from 'change-case';
+import Scrollbar from "../Scrollbar";
+import Label from "../Label";
 function ShowAllMed({ equipments }) {
   console.log(equipments);
   const [loading, setLoading] = useState(false);
   return (
     <div>
-      <h1 style={{ marginBottom: '2rem' }}>Medical Equipment</h1>
+      <h1 style={{ marginBottom: "2rem" }}>Medical Equipment</h1>
 
       <Card>
         <Scrollbar>
@@ -46,13 +45,13 @@ function ShowAllMed({ equipments }) {
                   return (
                     <TableRow key={i}>
                       <TableCell>{row.sampleName}</TableCell>
-                      <TableCell>{row.sampleType.split('#')[1]}</TableCell>
+                      <TableCell>{row.sampleType.split("#")[1]}</TableCell>
                       <TableCell>
-                        {row.sampleStatus === 'Operational' ? (
+                        {row.sampleStatus === "Operational" ? (
                           <Button variant="contained" color="success">
                             {row.sampleStatus}
                           </Button>
-                        ) : row.sampleStatus === 'Under Maintenance' ? (
+                        ) : row.sampleStatus === "Under Maintenance" ? (
                           <Button variant="contained" color="error">
                             {row.sampleStatus}
                           </Button>
@@ -63,26 +62,34 @@ function ShowAllMed({ equipments }) {
                         )}
                       </TableCell>
                       <TableCell>{row.sampleManufacturer}</TableCell>
-                      <TableCell>{row.samplePurchaseDate.split('^')[0].replace('T', ' at ')}</TableCell>
+                      <TableCell>
+                        {row.samplePurchaseDate
+                          .split("^")[0]
+                          .replace("T", " at ")}
+                      </TableCell>
 
                       <TableCell>{row.sampleTechnicians}</TableCell>
                       <TableCell>{row.sampleDepartmentNames}</TableCell>
                       <TableCell>
                         {row.samplePatientNames
-                          ? row.samplePatientNames.split(',').map((e) => {
+                          ? row.samplePatientNames.split(",").map((e) => {
                               return (
-                                <Label variant="ghost" color="success">
-                                  {e}
-                                </Label>
+                                <div style={{ marginBottom: "0.5rem" }}>
+                                  <Label variant="ghost" color="success">
+                                    {e}
+                                  </Label>
+                                </div>
                               );
                             })
-                          : 'No Patient Yet'}
+                          : "No Patient Yet"}
                       </TableCell>
                       <TableCell>
-                        <div style={{ display: 'flex', justifyContent: 'space-around' }}>
-                          <Button variant="outlined" color="info" style={{ marginRight: '1rem' }}>
-                            Edit
-                          </Button>
+                        <div
+                          style={{
+                            display: "flex",
+                            justifyContent: "space-around",
+                          }}
+                        >
                           <Button variant="outlined" color="error">
                             Delete
                           </Button>

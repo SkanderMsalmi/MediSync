@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React from 'react';
+import React from "react";
 import {
   Box,
   Card,
@@ -11,18 +11,47 @@ import {
   TableCell,
   TableHead,
   CardHeader,
-  TableContainer
-} from '@material-ui/core';
-import { Icon } from '@iconify/react';
-import arrowIosForwardFill from '@iconify/icons-eva/arrow-ios-forward-fill';
-import { Link as RouterLink } from 'react-router-dom';
-import Scrollbar from '../Scrollbar';
+  TableContainer,
+} from "@material-ui/core";
+import { Icon } from "@iconify/react";
+import arrowIosForwardFill from "@iconify/icons-eva/arrow-ios-forward-fill";
+import { Link as RouterLink } from "react-router-dom";
+import Scrollbar from "../Scrollbar";
 
-import Label from '../Label';
+import Label from "../Label";
 function ShowAllPharmacy({ pharmacys }) {
   return (
     <div>
-      <h1 style={{ marginBottom: '2rem' }}>Pharmacy </h1>
+      <h1 style={{ marginBottom: "2rem" }}>Pharmacy </h1>
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <Button
+          variant="contained"
+          onClick={(event) => {
+            event.preventDefault();
+            filterBySurgicalEquipment();
+          }}
+        >
+          Show Departments with surgical equipment
+        </Button>
+        <Button
+          variant="contained"
+          onClick={(event) => {
+            event.preventDefault();
+            filterByImagingEquipment();
+          }}
+        >
+          Show Departments with imaging equipment
+        </Button>
+        <Button
+          variant="contained"
+          onClick={(event) => {
+            event.preventDefault();
+            getAllDepartments();
+          }}
+        >
+          Reset{" "}
+        </Button>
+      </div>
       <Card>
         <Scrollbar>
           <TableContainer sx={{ minWidth: 720 }}>
@@ -46,9 +75,14 @@ function ShowAllPharmacy({ pharmacys }) {
                       <TableCell>
                         <Button
                           variant="contained"
-                          color={row.sampleType.split('#')[1].split('_')[0] == 'Outpatient' ? 'info' : 'primary'}
+                          color={
+                            row.sampleType.split("#")[1].split("_")[0] ==
+                            "Outpatient"
+                              ? "info"
+                              : "primary"
+                          }
                         >
-                          {row.sampleType.split('#')[1].split('_')[0]}
+                          {row.sampleType.split("#")[1].split("_")[0]}
                         </Button>
                       </TableCell>
                       <TableCell>{row.sampleLocation}</TableCell>
@@ -63,23 +97,27 @@ function ShowAllPharmacy({ pharmacys }) {
                       )}
                       <TableCell>
                         {row.samplePatients
-                          ? row.samplePatients.split(',').map((e) => {
+                          ? row.samplePatients.split(",").map((e) => {
                               return (
                                 <>
-                                  <Label variant="ghost" color="success">
-                                    {e}
-                                  </Label>
-                                  <br />
+                                  <div style={{ marginBottom: "0.5rem" }}>
+                                    <Label variant="ghost" color="success">
+                                      {e}
+                                    </Label>
+                                    <br />
+                                  </div>{" "}
                                 </>
                               );
                             })
-                          : 'No Patient Yet'}
+                          : "No Patient Yet"}
                       </TableCell>
                       <TableCell>
-                        <div style={{ display: 'flex', justifyContent: 'space-around' }}>
-                          <Button variant="outlined" color="warning" style={{ marginRight: '16px' }}>
-                            Edit
-                          </Button>
+                        <div
+                          style={{
+                            display: "flex",
+                            justifyContent: "space-around",
+                          }}
+                        >
                           <Button variant="outlined" color="error">
                             Delete
                           </Button>
@@ -95,7 +133,7 @@ function ShowAllPharmacy({ pharmacys }) {
 
         <Divider />
 
-        <Box sx={{ p: 2, textAlign: 'right' }}>
+        <Box sx={{ p: 2, textAlign: "right" }}>
           <Button
             to="#"
             size="small"
