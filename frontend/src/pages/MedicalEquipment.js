@@ -43,6 +43,19 @@ function MedicalEquipment() {
         console.error("Error fetching data:", error);
       });
   };
+  const get_Order_Equip = () => {
+    axios
+      .get(
+        "http://localhost:8080/hospital/show/skander/Get_Order_Medical_Equipment"
+      )
+      .then((response) => {
+        // Update the state with the fetched data
+        setMedicalEquipment(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  };
   const get_Under_Maintenance_Equip = () => {
     axios
       .get(
@@ -90,7 +103,7 @@ function MedicalEquipment() {
             marginLeft: "auto",
             marginRight: "auto",
             justifyContent: "space-around",
-            width: "80%",
+            width: "95%",
           }}
         >
           <Button
@@ -130,6 +143,15 @@ function MedicalEquipment() {
             }}
           >
             Show Surgical Equip
+          </Button>
+          <Button
+            variant="contained"
+            onClick={(event) => {
+              event.preventDefault();
+              get_Order_Equip();
+            }}
+          >
+            Order By Name |
           </Button>
           <Button
             variant="contained"

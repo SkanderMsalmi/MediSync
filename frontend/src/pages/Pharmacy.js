@@ -34,6 +34,17 @@ function Pharmacy() {
         console.error("Error fetching data:", error);
       });
   };
+  const get_Order_Pharmacy = () => {
+    axios
+      .get("http://localhost:8080/hospital/show/skander/Get_Pharmacy_Order")
+      .then((response) => {
+        // Update the state with the fetched data
+        setPharmacyData(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  };
   const get_all_pharmacies = () => {
     const apiUrl = "http://localhost:8080/hospital/show/skander/Get_Pharmacy";
     axios
@@ -88,6 +99,16 @@ function Pharmacy() {
             }}
           >
             Show Out Patient Pharmacy
+          </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={(event) => {
+              event.preventDefault();
+              get_Order_Pharmacy();
+            }}
+          >
+            Order By Name |
           </Button>
           <Button
             variant="contained"
