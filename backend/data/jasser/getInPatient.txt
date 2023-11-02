@@ -6,8 +6,8 @@ SELECT ?patient
        (GROUP_CONCAT(IF(?propLocal = "patientAddress", ?value, ""); separator="") AS ?patientAddress)
        (GROUP_CONCAT(IF(?propLocal = "patienAge", ?value, ""); separator="") AS ?patientAge)
        (GROUP_CONCAT(IF(?propLocal = "patientMedicalHistory", ?value, ""); separator="") AS ?patientMedicalHistory)
-       (GROUP_CONCAT(DISTINCT ?doctorName; separator="") AS ?treatedBy)
-       (GROUP_CONCAT(DISTINCT ?AppointmentDateTime; separator="") AS ?hasAppointment)
+       (GROUP_CONCAT(DISTINCT ?doctorName; separator=",") AS ?treatedBy)
+       (GROUP_CONCAT(DISTINCT ?AppointmentDateTime; separator=",") AS ?hasAppointment)
        (GROUP_CONCAT(DISTINCT ?recordPrescription; separator=",") AS ?hasMedicalRecord)
 WHERE {
   ?patient a/rdfs:subClassOf* medisync:Inpatient .

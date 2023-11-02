@@ -10,20 +10,21 @@ import {
   TableCell,
   Container,
   TableContainer,
-  TablePagination
-} from '@material-ui/core';
-import { useTheme } from '@material-ui/core/styles';
-import { useState, useEffect } from 'react';
-import { fDate } from '../../utils/formatTime'; 
+  TablePagination,
+} from "@material-ui/core";
+import { useTheme } from "@material-ui/core/styles";
+import { useState, useEffect } from "react";
+import { fDate } from "../../utils/formatTime";
+import Label from "src/components/Label";
 
 const TABLE_HEAD = [
-  { id: 'select', label: 'Select', alignRight: false },
-  { id: 'staffName', label: 'Nurse Name', alignRight: false },
-  { id: 'worksInDepartment', label: 'Department', alignRight: false },
-  { id: 'staffEmploymentDate', label: 'Employment Date', alignRight: false },
-  { id: 'staffContactInfo', label: 'Contact', alignRight: false },
-  { id: 'treatedPatients', label: 'Assisted Patients', alignRight: false },
-  { id: '' }
+  { id: "select", label: "Select", alignRight: false },
+  { id: "staffName", label: "Nurse Name", alignRight: false },
+  { id: "worksInDepartment", label: "Department", alignRight: false },
+  { id: "staffEmploymentDate", label: "Employment Date", alignRight: false },
+  { id: "staffContactInfo", label: "Contact", alignRight: false },
+  { id: "treatedPatients", label: "Assisted Patients", alignRight: false },
+  { id: "" },
 ];
 
 export default function NursesList() {
@@ -31,13 +32,16 @@ export default function NursesList() {
   const [nurses, setNurses] = useState([]);
   const [page, setPage] = useState(0);
   const [selected, setSelected] = useState([]);
-  const [filterName, setFilterName] = useState('');
+  const [filterName, setFilterName] = useState("");
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
   const fetchData = (endpoint) => {
     fetch(endpoint)
       .then((response) => response.json())
-      .then((data) => setNurses(data))
+      .then((data) => {
+        setNurses(data);
+        console.log(data);
+      })
       .catch((error) => console.error("Error fetching nurses:", error));
   };
 
@@ -59,33 +63,45 @@ export default function NursesList() {
   };
 
   const filteredNurses = nurses.filter(
-    (nurse) => !filterName || nurse.staffName.toLowerCase().includes(filterName.toLowerCase())
+    (nurse) =>
+      !filterName ||
+      nurse.staffName.toLowerCase().includes(filterName.toLowerCase())
   );
 
   return (
-    <Container maxWidth="lg">
-      <Button 
-          variant="contained" 
-          color="primary" 
-          style={{ marginRight: theme.spacing(1) }}
-          onClick={() => fetchData("http://localhost:8080/hospital/show/jasser/getAllNurses")}
-        >
-          All Nurses
-        </Button>
+    <Container>
+      <Button
+        variant="contained"
+        color="primary"
+        style={{ marginRight: theme.spacing(1) }}
+        onClick={() =>
+          fetchData("http://localhost:8080/hospital/show/jasser/getAllNurses")
+        }
+      >
+        All Nurses
+      </Button>
       <Box display="flex" justifyContent="center" marginBottom={2}>
-        <Button 
-          variant="contained" 
-          color="primary" 
+        <Button
+          variant="contained"
+          color="primary"
           style={{ marginRight: theme.spacing(1) }}
-          onClick={() => fetchData("http://localhost:8080/hospital/show/jasser/getHeadNurses")}
+          onClick={() =>
+            fetchData(
+              "http://localhost:8080/hospital/show/jasser/getHeadNurses"
+            )
+          }
         >
           Head Nurses
         </Button>
 
-        <Button 
-          variant="contained" 
-          color="primary" 
-          onClick={() => fetchData("http://localhost:8080/hospital/show/jasser/getRegisteredNurses")}
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={() =>
+            fetchData(
+              "http://localhost:8080/hospital/show/jasser/getRegisteredNurses"
+            )
+          }
         >
           Registered Nurses
         </Button>
@@ -101,37 +117,58 @@ export default function NursesList() {
               </TableRow>
             </TableBody>
             <TableBody>
-              {filteredNurses.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((nurse) => {
-                const isItemSelected = selected.indexOf(nurse.staffName) !== -1;
+              {filteredNurses
+                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                .map((nurse) => {
+                  const isItemSelected =
+                    selected.indexOf(nurse.staffName) !== -1;
 
-                return (
-                  <TableRow
-                    hover
-                    key={nurse.nurse}
-                    tabIndex={-1}
-                    role="checkbox"
-                    selected={isItemSelected}
-                  >
-                    <TableCell padding="checkbox">
-                      <Checkbox checked={isItemSelected} onChange={() => {
-                        const newSelecteds = [...selected];
-                        const selectedIndex = selected.indexOf(nurse.staffName);
-                        if (selectedIndex === -1) {
-                          newSelecteds.push(nurse.staffName);
-                        } else {
-                          newSelecteds.splice(selectedIndex, 1);
-                        }
-                        setSelected(newSelecteds);
-                      }} />
-                    </TableCell>
-                    <TableCell>{nurse.staffName}</TableCell>
-                    <TableCell>{nurse.worksInDepartment}</TableCell>
-                    <TableCell>{nurse.staffEmploymentDate}</TableCell>
-                    <TableCell>{nurse.staffContactInfo}</TableCell>
-                    <TableCell>{nurse.assistedPatients}</TableCell>
-                  </TableRow>
-                );
-              })}
+                  return (
+                    <TableRow
+                      hover
+                      key={nurse.nurse}
+                      tabIndex={-1}
+                      role="checkbox"
+                      selected={isItemSelected}
+                    >
+                      <TableCell padding="checkbox">
+                        <Checkbox
+                          checked={isItemSelected}
+                          onChange={() => {
+                            const newSelecteds = [...selected];
+                            const selectedIndex = selected.indexOf(
+                              nurse.staffName
+                            );
+                            if (selectedIndex === -1) {
+                              newSelecteds.push(nurse.staffName);
+                            } else {
+                              newSelecteds.splice(selectedIndex, 1);
+                            }
+                            setSelected(newSelecteds);
+                          }}
+                        />
+                      </TableCell>
+                      <TableCell>{nurse.staffName}</TableCell>
+                      <TableCell>{nurse.worksInDepartment}</TableCell>
+                      <TableCell>{nurse.staffEmploymentDate}</TableCell>
+                      <TableCell>{nurse.staffContactInfo}</TableCell>
+
+                      <TableCell>
+                        {nurse.assistedPatients
+                          ? nurse.assistedPatients.split(",").map((e) => {
+                              return (
+                                <div style={{ marginBottom: "0.5rem" }}>
+                                  <Label variant="ghost" color="success">
+                                    {e}
+                                  </Label>
+                                </div>
+                              );
+                            })
+                          : "No Patient Yet"}
+                      </TableCell>
+                    </TableRow>
+                  );
+                })}
             </TableBody>
           </Table>
         </TableContainer>

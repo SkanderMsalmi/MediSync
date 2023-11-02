@@ -10,20 +10,21 @@ import {
   TableCell,
   Container,
   TableContainer,
-  TablePagination
-} from '@material-ui/core';
-import { useTheme } from '@material-ui/core/styles';
-import { useState, useEffect } from 'react';
-import { fDate } from '../../utils/formatTime'; 
+  TablePagination,
+} from "@material-ui/core";
+import { useTheme } from "@material-ui/core/styles";
+import { useState, useEffect } from "react";
+import { fDate } from "../../utils/formatTime";
+import Label from "src/components/Label";
 
 const TABLE_HEAD = [
-  { id: 'select', label: 'Select', alignRight: false },
-  { id: 'staffName', label: 'Technician Name', alignRight: false },
-  { id: 'worksInDepartment', label: 'Department', alignRight: false },
-  { id: 'staffEmploymentDate', label: 'Employment Date', alignRight: false },
-  { id: 'staffContactInfo', label: 'Contact', alignRight: false },
-  { id: 'operatesEquipment', label: 'Equipment', alignRight: false },
-  { id: '' }
+  { id: "select", label: "Select", alignRight: false },
+  { id: "staffName", label: "Technician Name", alignRight: false },
+  { id: "worksInDepartment", label: "Department", alignRight: false },
+  { id: "staffEmploymentDate", label: "Employment Date", alignRight: false },
+  { id: "staffContactInfo", label: "Contact", alignRight: false },
+  { id: "operatesEquipment", label: "Equipment", alignRight: false },
+  { id: "" },
 ];
 
 export default function TechniciansList() {
@@ -31,7 +32,7 @@ export default function TechniciansList() {
   const [technicians, setTechnicians] = useState([]);
   const [page, setPage] = useState(0);
   const [selected, setSelected] = useState([]);
-  const [filterName, setFilterName] = useState('');
+  const [filterName, setFilterName] = useState("");
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
   const fetchData = (endpoint) => {
@@ -59,33 +60,47 @@ export default function TechniciansList() {
   };
 
   const filteredTechnicians = technicians.filter(
-    (technician) => !filterName || technician.staffName.toLowerCase().includes(filterName.toLowerCase())
+    (technician) =>
+      !filterName ||
+      technician.staffName.toLowerCase().includes(filterName.toLowerCase())
   );
 
   return (
     <Container maxWidth="lg">
-      <Button 
-          variant="contained" 
-          color="primary" 
-          style={{ marginRight: theme.spacing(1) }}
-          onClick={() => fetchData("http://localhost:8080/hospital/show/jasser/getAllTechnicians")}
-        >
-          All Technicians
-        </Button>
+      <Button
+        variant="contained"
+        color="primary"
+        style={{ marginRight: theme.spacing(1) }}
+        onClick={() =>
+          fetchData(
+            "http://localhost:8080/hospital/show/jasser/getAllTechnicians"
+          )
+        }
+      >
+        All Technicians
+      </Button>
       <Box display="flex" justifyContent="center" marginBottom={2}>
-        <Button 
-          variant="contained" 
-          color="primary" 
+        <Button
+          variant="contained"
+          color="primary"
           style={{ marginRight: theme.spacing(1) }}
-          onClick={() => fetchData("http://localhost:8080/hospital/show/jasser/getLabTechnicians")}
+          onClick={() =>
+            fetchData(
+              "http://localhost:8080/hospital/show/jasser/getLabTechnicians"
+            )
+          }
         >
           Lab Technicians
         </Button>
 
-        <Button 
-          variant="contained" 
-          color="primary" 
-          onClick={() => fetchData("http://localhost:8080/hospital/show/jasser/getRadiologyTechnicians")}
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={() =>
+            fetchData(
+              "http://localhost:8080/hospital/show/jasser/getRadiologyTechnicians"
+            )
+          }
         >
           Radiology Technicians
         </Button>
@@ -101,37 +116,60 @@ export default function TechniciansList() {
               </TableRow>
             </TableBody>
             <TableBody>
-              {filteredTechnicians.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((technician) => {
-                const isItemSelected = selected.indexOf(technician.staffName) !== -1;
+              {filteredTechnicians
+                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                .map((technician) => {
+                  const isItemSelected =
+                    selected.indexOf(technician.staffName) !== -1;
 
-                return (
-                  <TableRow
-                    hover
-                    key={technician.technician}
-                    tabIndex={-1}
-                    role="checkbox"
-                    selected={isItemSelected}
-                  >
-                    <TableCell padding="checkbox">
-                      <Checkbox checked={isItemSelected} onChange={() => {
-                        const newSelecteds = [...selected];
-                        const selectedIndex = selected.indexOf(technician.staffName);
-                        if (selectedIndex === -1) {
-                          newSelecteds.push(technician.staffName);
-                        } else {
-                          newSelecteds.splice(selectedIndex, 1);
-                        }
-                        setSelected(newSelecteds);
-                      }} />
-                    </TableCell>
-                    <TableCell>{technician.staffName}</TableCell>
-                    <TableCell>{technician.worksInDepartment}</TableCell>
-                    <TableCell>{fDate(technician.staffEmploymentDate)}</TableCell>
-                    <TableCell>{technician.staffContactInfo}</TableCell>
-                    <TableCell>{technician.operatesEquipment}</TableCell>
-                  </TableRow>
-                );
-              })}
+                  return (
+                    <TableRow
+                      hover
+                      key={technician.technician}
+                      tabIndex={-1}
+                      role="checkbox"
+                      selected={isItemSelected}
+                    >
+                      <TableCell padding="checkbox">
+                        <Checkbox
+                          checked={isItemSelected}
+                          onChange={() => {
+                            const newSelecteds = [...selected];
+                            const selectedIndex = selected.indexOf(
+                              technician.staffName
+                            );
+                            if (selectedIndex === -1) {
+                              newSelecteds.push(technician.staffName);
+                            } else {
+                              newSelecteds.splice(selectedIndex, 1);
+                            }
+                            setSelected(newSelecteds);
+                          }}
+                        />
+                      </TableCell>
+                      <TableCell>{technician.staffName}</TableCell>
+                      <TableCell>{technician.worksInDepartment}</TableCell>
+                      <TableCell>
+                        {fDate(technician.staffEmploymentDate)}
+                      </TableCell>
+                      <TableCell>{technician.staffContactInfo}</TableCell>
+                      <TableCell>{technician.operatesEquipment}</TableCell>
+                      <TableCell>
+                        {technician.operatesEquipment
+                          ? technician.operatesEquipment.split(",").map((e) => {
+                              return (
+                                <div style={{ marginBottom: "0.5rem" }}>
+                                  <Label variant="ghost" color="success">
+                                    {e}
+                                  </Label>
+                                </div>
+                              );
+                            })
+                          : "No Patient Yet"}
+                      </TableCell>
+                    </TableRow>
+                  );
+                })}
             </TableBody>
           </Table>
         </TableContainer>

@@ -5,7 +5,7 @@ SELECT ?doctor
        (GROUP_CONCAT(IF(?propLocal = "staffContactInfo", ?value, ""); separator="") AS ?staffContactInfo)
        (GROUP_CONCAT(IF(?propLocal = "staffEmploymentDate", ?value, ""); separator="") AS ?staffEmploymentDate)
        (GROUP_CONCAT(IF(?propLocal = "staffName", ?value, ""); separator="") AS ?staffName)
-       (GROUP_CONCAT(DISTINCT ?patientName; separator="") AS ?treatedPatients)
+       (GROUP_CONCAT(DISTINCT ?patientName; separator=",") AS ?treatedPatients)
        (GROUP_CONCAT(DISTINCT ?departmentName; separator=",") AS ?worksInDepartment)
 WHERE {
   ?doctor a/rdfs:subClassOf* medisync:Doctor .
