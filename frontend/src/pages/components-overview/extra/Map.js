@@ -17,7 +17,6 @@ import { mapConfig } from '../../../config';
 
 // FIX DISPLAY ERROR ON PRODUCTION
 
-// eslint-disable-next-line import/no-webpack-loader-syntax, import/no-unresolved
 mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
 
 const THEMES = {

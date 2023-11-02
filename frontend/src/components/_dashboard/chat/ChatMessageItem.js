@@ -51,7 +51,7 @@ export default function ChatMessageItem({ message, conversation, onOpenLightbox,
 
   const isMe = senderDetails.type === 'me';
   const isImage = message.contentType === 'image';
-  const firstName = senderDetails.name && senderDetails.name.split(' ')[0];
+  const firstName = senderDetails.name && senderDetails.name.split('T')[0];
 
   return (
     <RootStyle {...other}>

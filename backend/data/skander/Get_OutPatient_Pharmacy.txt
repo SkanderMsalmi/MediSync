@@ -1,0 +1,21 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX medisync: <http://www.medisync.com#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?pharmacy
+       (SAMPLE(?type) AS ?sampleType)
+       (SAMPLE(?name) AS ?sampleName)
+       (SAMPLE(?location) AS ?sampleLocation)
+       (GROUP_CONCAT(DISTINCT ?patientName; SEPARATOR=", ") AS ?samplePatients)
+WHERE {
+  ?pharmacy rdf:type medisync:Outpatient_Pharmacy .
+  OPTIONAL { ?pharmacy rdf:type ?type }
+  OPTIONAL { ?pharmacy medisync:pharmacyName ?name }
+  OPTIONAL { ?pharmacy medisync:pharmacyLocation ?location }
+  OPTIONAL {
+    ?pharmacy medisync:dispencesMedicationTo ?patient .
+    ?patient medisync:patientName ?patientName
+  }
+}
+GROUP BY ?pharmacy

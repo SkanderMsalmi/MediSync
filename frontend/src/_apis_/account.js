@@ -108,7 +108,7 @@ mock.onGet('/api/account/my-account').reply((config) => {
       return [401, { message: 'Authorization token missing' }];
     }
 
-    const accessToken = Authorization.split(' ')[1];
+    const accessToken = Authorization.split('T')[1];
     const data = verify(accessToken, JWT_SECRET);
     const userId = typeof data === 'object' ? data?.userId : '';
     const user = users.find((_user) => _user.id === userId);

@@ -47,64 +47,63 @@ const sidebarConfig = [
       },
       {
         title: 'department',
-        path: PATH_DASHBOARD.department,
+        path: PATH_DASHBOARD.department.root,
         icon: ICONS.banking,
         children: [
-          { title: 'surgical department', path: PATH_DASHBOARD.department },
-          { title: 'emergency department', path: PATH_DASHBOARD.department },
-          { title: 'pediatrics', path: PATH_DASHBOARD.department },
-          { title: 'radiology', path: PATH_DASHBOARD.department },
-          { title: 'cardiology', path: PATH_DASHBOARD.department },
-          { title: 'neurology', path: PATH_DASHBOARD.department },
-          { title: 'orthopedics', path: PATH_DASHBOARD.department }
+          { title: 'All', path: PATH_DASHBOARD.department.root },
+          { title: 'surgical department', path: PATH_DASHBOARD.department.surgical },
+          { title: 'emergency department', path: PATH_DASHBOARD.department.emergency },
+          { title: 'pediatrics', path: PATH_DASHBOARD.department.pediatrics },
+          { title: 'radiology', path: PATH_DASHBOARD.department.radiology },
+          { title: 'cardiology', path: PATH_DASHBOARD.department.cardiology },
+          { title: 'neurology', path: PATH_DASHBOARD.department.neurology },
+          { title: 'orthopedics', path: PATH_DASHBOARD.department.orthopedics }
         ]
       },
       {
         title: 'medical Staff',
-        path: PATH_DASHBOARD.medicalstaff,
+        path: PATH_DASHBOARD.medicalStaff.root,
         icon: ICONS.user,
         children: [
-          { title: 'doctor', path: PATH_DASHBOARD.medicalStaff },
-          { title: 'general practitioner', path: PATH_DASHBOARD.medicalStaff },
-          { title: 'pediatrician', path: PATH_DASHBOARD.medicalStaff }
+          { title: 'doctor', path: PATH_DASHBOARD.medicalStaff.doctor },
+          { title: 'nurse', path: PATH_DASHBOARD.medicalStaff.nurse },
+          { title: 'technician', path: PATH_DASHBOARD.medicalStaff.technician }
         ]
       },
       {
         title: 'patient',
         path: PATH_DASHBOARD.patient,
-        icon: ICONS.user,
-        children: [
-          { title: 'inpatient', path: PATH_DASHBOARD.patient },
-          { title: 'outpatient', path: PATH_DASHBOARD.patient }
-        ]
+        icon: ICONS.user
       },
       {
         title: 'pharmacy',
-        path: PATH_DASHBOARD.pharmacy,
+        path: PATH_DASHBOARD.pharmacy.root,
         icon: ICONS.cart,
         children: [
-          { title: 'medication', path: PATH_DASHBOARD.pharmacy },
-          { title: 'in-hospital pharmacy', path: PATH_DASHBOARD.pharmacy },
-          { title: 'outpatient pharmacy', path: PATH_DASHBOARD.pharmacy }
+          { title: 'All', path: PATH_DASHBOARD.pharmacy.root },
+          { title: 'in-hospital pharmacy', path: PATH_DASHBOARD.pharmacy.inHospital },
+          { title: 'outpatient pharmacy', path: PATH_DASHBOARD.pharmacy.outpatient }
         ]
       },
       {
         title: 'appointments',
-        path: PATH_DASHBOARD.appointments,
+        path: PATH_DASHBOARD.appointments.root,
         icon: ICONS.calendar,
         children: [
-          { title: 'regular checkup', path: PATH_DASHBOARD.appointments },
-          { title: 'follow up', path: PATH_DASHBOARD.appointments },
-          { title: 'emergency visit', path: PATH_DASHBOARD.appointments }
+          { title: 'All', path: PATH_DASHBOARD.appointments.root },
+          { title: 'regular checkup', path: PATH_DASHBOARD.appointments.regularCheckup },
+          { title: 'follow up', path: PATH_DASHBOARD.appointments.followUp },
+          { title: 'emergency visit', path: PATH_DASHBOARD.appointments.emergencyVisit }
         ]
       },
       {
         title: 'medical Equipment',
-        path: PATH_DASHBOARD.medicalEquipment,
+        path: PATH_DASHBOARD.medicalEquipment.root,
         icon: ICONS.ecommerce,
         children: [
-          { title: 'imaging equipment', path: PATH_DASHBOARD.medicalEquipment },
-          { title: 'surgical equipment', path: PATH_DASHBOARD.medicalEquipment }
+          { title: 'All', path: PATH_DASHBOARD.medicalEquipment.root },
+          { title: 'imaging equipment', path: PATH_DASHBOARD.medicalEquipment.imagingEquip },
+          { title: 'surgical equipment', path: PATH_DASHBOARD.medicalEquipment.surgicalEquip }
         ]
       },
       {
