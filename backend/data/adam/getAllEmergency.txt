@@ -7,7 +7,7 @@ SELECT ?department ?departmentName ?floorNumber
        (GROUP_CONCAT(DISTINCT ?equipmentName; SEPARATOR=", ") as ?equipmentList)
        (GROUP_CONCAT(DISTINCT ?patientName; SEPARATOR=", ") as ?patientList)
 WHERE {
-  ?department rdf:type medisync:Neurology ;
+  ?department rdf:type medisync:Emergency_Department ;
              medisync:departmentName ?departmentName ;
              medisync:departmentFloorNumber ?floorNumber .
   
@@ -19,5 +19,6 @@ WHERE {
     ?department medisync:treatsPatient ?patient .
     ?patient medisync:patientName ?patientName .
   }
+
 }
-GROUP BY ?departmentName ?floorNumber
+GROUP BY ?department ?departmentName ?floorNumber
