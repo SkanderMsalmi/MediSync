@@ -32,7 +32,30 @@ function MedicalEquipment() {
       setMedicalEquipment([]);
     };
   }, []);
-
+  const get_Operational_Equip = () => {
+    axios
+      .get("http://localhost:8080/hospital/show/skander/Get_Equip_Operationnal")
+      .then((response) => {
+        // Update the state with the fetched data
+        setMedicalEquipment(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  };
+  const get_Under_Maintenance_Equip = () => {
+    axios
+      .get(
+        "http://localhost:8080/hospital/show/skander/Get_Equip_Under_Maintenance"
+      )
+      .then((response) => {
+        // Update the state with the fetched data
+        setMedicalEquipment(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  };
   const get_Scalpel_Equip = () => {
     axios
       .get("http://localhost:8080/hospital/show/skander/Get_Scalpel_Equip")
@@ -60,7 +83,36 @@ function MedicalEquipment() {
   if (isMedEquipRoute) {
     return (
       <>
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <h1 style={{ marginBottom: "2rem" }}>Medical Equipment</h1>
+        <div
+          style={{
+            display: "flex",
+            marginLeft: "auto",
+            marginRight: "auto",
+            justifyContent: "space-around",
+            width: "80%",
+          }}
+        >
+          <Button
+            variant="contained"
+            color="info"
+            onClick={(event) => {
+              event.preventDefault();
+              get_Operational_Equip();
+            }}
+          >
+            Show Operational Equipment
+          </Button>
+          <Button
+            variant="contained"
+            color="error"
+            onClick={(event) => {
+              event.preventDefault();
+              get_Under_Maintenance_Equip();
+            }}
+          >
+            Show Under Maintenance Equipment
+          </Button>
           <Button
             variant="contained"
             onClick={(event) => {
@@ -81,6 +133,7 @@ function MedicalEquipment() {
           </Button>
           <Button
             variant="contained"
+            color="secondary"
             onClick={(event) => {
               event.preventDefault();
               Get_All_Medical_Equipment();

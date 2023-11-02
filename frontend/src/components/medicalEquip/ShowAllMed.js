@@ -21,9 +21,8 @@ function ShowAllMed({ equipments }) {
   const [loading, setLoading] = useState(false);
   return (
     <div>
-      <h1 style={{ marginBottom: "2rem" }}>Medical Equipment</h1>
-
       <Card>
+        <CardHeader title=" Equipment" sx={{ mb: 3 }} />
         <Scrollbar>
           <TableContainer sx={{ minWidth: 720 }}>
             <Table>

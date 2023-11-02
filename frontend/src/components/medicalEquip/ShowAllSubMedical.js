@@ -30,7 +30,7 @@ function ShowAllSubMedical({ medicals, type }) {
               <TableHead>
                 <TableRow>
                   <TableCell>Name</TableCell>
-                  <TableCell>Type</TableCell>
+
                   <TableCell>Status</TableCell>
                   <TableCell>Manu Facturer</TableCell>
                   <TableCell>Purchase Date</TableCell>
@@ -46,7 +46,6 @@ function ShowAllSubMedical({ medicals, type }) {
                   return (
                     <TableRow key={i}>
                       <TableCell>{row.sampleName}</TableCell>
-                      <TableCell>{row.sampleType.split("#")[1]}</TableCell>
                       <TableCell>
                         {row.sampleStatus === "Operational" ? (
                           <Button variant="contained" color="success">

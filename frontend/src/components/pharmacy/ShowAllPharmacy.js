@@ -22,44 +22,14 @@ import Label from "../Label";
 function ShowAllPharmacy({ pharmacys }) {
   return (
     <div>
-      <h1 style={{ marginBottom: "2rem" }}>Pharmacy </h1>
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <Button
-          variant="contained"
-          onClick={(event) => {
-            event.preventDefault();
-            filterBySurgicalEquipment();
-          }}
-        >
-          Show Departments with surgical equipment
-        </Button>
-        <Button
-          variant="contained"
-          onClick={(event) => {
-            event.preventDefault();
-            filterByImagingEquipment();
-          }}
-        >
-          Show Departments with imaging equipment
-        </Button>
-        <Button
-          variant="contained"
-          onClick={(event) => {
-            event.preventDefault();
-            getAllDepartments();
-          }}
-        >
-          Reset{" "}
-        </Button>
-      </div>
       <Card>
+        <CardHeader title=" Pharmacies" sx={{ mb: 3 }} />
         <Scrollbar>
           <TableContainer sx={{ minWidth: 720 }}>
             <Table>
               <TableHead>
                 <TableRow>
                   <TableCell>Name</TableCell>
-                  <TableCell>Type</TableCell>
                   <TableCell>Location</TableCell>
                   <TableCell>Located In Hospital</TableCell>
                   <TableCell>Patients</TableCell>
@@ -72,19 +42,7 @@ function ShowAllPharmacy({ pharmacys }) {
                   return (
                     <TableRow key={i}>
                       <TableCell>{row.sampleName}</TableCell>
-                      <TableCell>
-                        <Button
-                          variant="contained"
-                          color={
-                            row.sampleType.split("#")[1].split("_")[0] ==
-                            "Outpatient"
-                              ? "info"
-                              : "primary"
-                          }
-                        >
-                          {row.sampleType.split("#")[1].split("_")[0]}
-                        </Button>
-                      </TableCell>
+
                       <TableCell>{row.sampleLocation}</TableCell>
                       {row.sampleHospitals ? (
                         <TableCell>{row.sampleHospitals}</TableCell>
