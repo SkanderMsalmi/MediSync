@@ -50,6 +50,7 @@ const sidebarConfig = [
         path: PATH_DASHBOARD.department.root,
         icon: ICONS.banking,
         children: [
+          { title: 'All', path: PATH_DASHBOARD.department.root },
           { title: 'surgical department', path: PATH_DASHBOARD.department.surgical },
           { title: 'emergency department', path: PATH_DASHBOARD.department.emergency },
           { title: 'pediatrics', path: PATH_DASHBOARD.department.pediatrics },
@@ -89,6 +90,7 @@ const sidebarConfig = [
         path: PATH_DASHBOARD.appointments.root,
         icon: ICONS.calendar,
         children: [
+          { title: 'All', path: PATH_DASHBOARD.appointments.root },
           { title: 'regular checkup', path: PATH_DASHBOARD.appointments.regularCheckup },
           { title: 'follow up', path: PATH_DASHBOARD.appointments.followUp },
           { title: 'emergency visit', path: PATH_DASHBOARD.appointments.emergencyVisit }
