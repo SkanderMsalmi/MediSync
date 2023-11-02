@@ -1,7 +1,9 @@
+/* eslint-disable */
 import React from 'react';
+import { Outlet } from 'react-router';
 
 function MedicalStaff() {
-  return <div>MedicalStaff</div>;
+  return <Outlet/>;
 }
 
 export default MedicalStaff;

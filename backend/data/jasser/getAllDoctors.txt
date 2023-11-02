@@ -1,0 +1,25 @@
+PREFIX medisync: <http://www.medisync.com#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?doctor 
+       (GROUP_CONCAT(IF(?propLocal = "staffContactInfo", ?value, ""); separator="") AS ?staffContactInfo)
+       (GROUP_CONCAT(IF(?propLocal = "staffEmploymentDate", ?value, ""); separator="") AS ?staffEmploymentDate)
+       (GROUP_CONCAT(IF(?propLocal = "staffName", ?value, ""); separator="") AS ?staffName)
+       (GROUP_CONCAT(DISTINCT ?patientName; separator=",") AS ?treatedPatients)
+       (GROUP_CONCAT(DISTINCT ?departmentName; separator=",") AS ?worksInDepartment)
+WHERE {
+  ?doctor a/rdfs:subClassOf* medisync:Doctor .
+  ?doctor ?dataProperty ?value .
+  OPTIONAL {
+    ?doctor medisync:treatPatient ?patient .
+    ?patient medisync:patientName ?patientName .
+  }
+  OPTIONAL {
+    ?doctor medisync:worksInDepartment ?department .
+    ?department medisync:departmentName ?departmentName .
+  }
+  FILTER isLiteral(?value) 
+  BIND(STRAFTER(STR(?dataProperty), "#") AS ?propLocal)
+}
+GROUP BY ?doctor
+ORDER BY ?doctor

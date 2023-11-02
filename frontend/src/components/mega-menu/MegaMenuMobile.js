@@ -62,7 +62,6 @@ function SubMenu({ parent, pathname }) {
     if (open) {
       handleClose();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
   const handleOpen = () => {
@@ -160,7 +159,6 @@ export default function MegaMenuMobile({ navConfig }) {
     if (openDrawer) {
       handleDrawerClose();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
   const handleDrawerOpen = () => {

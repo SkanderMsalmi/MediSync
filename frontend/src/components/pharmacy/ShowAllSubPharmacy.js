@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React from 'react';
+import React from "react";
 import {
   Box,
   Card,
@@ -11,18 +11,18 @@ import {
   TableCell,
   TableHead,
   CardHeader,
-  TableContainer
-} from '@material-ui/core';
-import { Icon } from '@iconify/react';
-import arrowIosForwardFill from '@iconify/icons-eva/arrow-ios-forward-fill';
-import { Link as RouterLink } from 'react-router-dom';
-import Scrollbar from '../Scrollbar';
-import Label from '../Label';
+  TableContainer,
+} from "@material-ui/core";
+import { Icon } from "@iconify/react";
+import arrowIosForwardFill from "@iconify/icons-eva/arrow-ios-forward-fill";
+import { Link as RouterLink } from "react-router-dom";
+import Scrollbar from "../Scrollbar";
+import Label from "../Label";
 
 function ShowAllSubPharmacy({ pharmacy, type }) {
   return (
     <div>
-      <h1 style={{ marginBottom: '2rem' }}>{type} Pharmacy</h1>
+      <h1 style={{ marginBottom: "2rem" }}>{type} Pharmacy</h1>
       <Card>
         <Scrollbar>
           <TableContainer sx={{ minWidth: 720 }}>
@@ -31,7 +31,11 @@ function ShowAllSubPharmacy({ pharmacy, type }) {
                 <TableRow>
                   <TableCell>Name</TableCell>
                   <TableCell>Location</TableCell>
-                  {type === 'In Hospital' ? <TableCell>Located In Hospital</TableCell> : <></>}
+                  {type === "In Hospital" ? (
+                    <TableCell>Located In Hospital</TableCell>
+                  ) : (
+                    <></>
+                  )}
 
                   <TableCell>Patients</TableCell>
                   <TableCell>Actions</TableCell>
@@ -45,9 +49,9 @@ function ShowAllSubPharmacy({ pharmacy, type }) {
                       <TableCell>{row.sampleName}</TableCell>
 
                       <TableCell>{row.sampleLocation}</TableCell>
-                      {type === 'In Hospital' ? (
+                      {type === "In Hospital" ? (
                         <TableCell>
-                          {' '}
+                          {" "}
                           {row.sampleHospitals ? (
                             <TableCell>{row.sampleHospitals}</TableCell>
                           ) : (
@@ -64,23 +68,27 @@ function ShowAllSubPharmacy({ pharmacy, type }) {
 
                       <TableCell>
                         {row.samplePatients
-                          ? row.samplePatients.split(',').map((e) => {
+                          ? row.samplePatients.split(",").map((e) => {
                               return (
                                 <>
-                                  <Label variant="ghost" color="success">
-                                    {e}
-                                  </Label>
-                                  <br />
+                                  <div style={{ marginBottom: "0.5rem" }}>
+                                    <Label variant="ghost" color="success">
+                                      {e}
+                                    </Label>
+                                    <br />
+                                  </div>
                                 </>
                               );
                             })
-                          : 'No Patient Yet'}
+                          : "No Patient Yet"}
                       </TableCell>
                       <TableCell>
-                        <div style={{ display: 'flex', justifyContent: 'space-around' }}>
-                          <Button variant="outlined" color="warning" style={{ marginRight: '16px' }}>
-                            Edit
-                          </Button>
+                        <div
+                          style={{
+                            display: "flex",
+                            justifyContent: "space-around",
+                          }}
+                        >
                           <Button variant="outlined" color="error">
                             Delete
                           </Button>
@@ -96,7 +104,7 @@ function ShowAllSubPharmacy({ pharmacy, type }) {
 
         <Divider />
 
-        <Box sx={{ p: 2, textAlign: 'right' }}>
+        <Box sx={{ p: 2, textAlign: "right" }}>
           <Button
             to="#"
             size="small"

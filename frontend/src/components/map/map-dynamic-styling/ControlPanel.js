@@ -92,7 +92,6 @@ export default function ControlPanel({ onChange }) {
 
   useEffect(() => {
     updateMapStyle({ color, visibility });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [color, visibility]);
 
   const onColorChange = (event, name) => {

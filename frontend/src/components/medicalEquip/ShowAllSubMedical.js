@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React from 'react';
+import React from "react";
 import {
   Box,
   Card,
@@ -11,18 +11,18 @@ import {
   TableCell,
   TableHead,
   CardHeader,
-  TableContainer
-} from '@material-ui/core';
-import { Icon } from '@iconify/react';
-import arrowIosForwardFill from '@iconify/icons-eva/arrow-ios-forward-fill';
-import { Link as RouterLink } from 'react-router-dom';
-import Scrollbar from '../Scrollbar';
-import Label from '../Label';
+  TableContainer,
+} from "@material-ui/core";
+import { Icon } from "@iconify/react";
+import arrowIosForwardFill from "@iconify/icons-eva/arrow-ios-forward-fill";
+import { Link as RouterLink } from "react-router-dom";
+import Scrollbar from "../Scrollbar";
+import Label from "../Label";
 
 function ShowAllSubMedical({ medicals, type }) {
   return (
     <div>
-      <h1 style={{ marginBottom: '2rem' }}>{type}</h1>
+      <h1 style={{ marginBottom: "2rem" }}>{type}</h1>
       <Card>
         <Scrollbar>
           <TableContainer sx={{ minWidth: 720 }}>
@@ -30,7 +30,7 @@ function ShowAllSubMedical({ medicals, type }) {
               <TableHead>
                 <TableRow>
                   <TableCell>Name</TableCell>
-                  <TableCell>Type</TableCell>
+
                   <TableCell>Status</TableCell>
                   <TableCell>Manu Facturer</TableCell>
                   <TableCell>Purchase Date</TableCell>
@@ -46,13 +46,12 @@ function ShowAllSubMedical({ medicals, type }) {
                   return (
                     <TableRow key={i}>
                       <TableCell>{row.sampleName}</TableCell>
-                      <TableCell>{row.sampleType.split('#')[1]}</TableCell>
                       <TableCell>
-                        {row.sampleStatus === 'Operational' ? (
+                        {row.sampleStatus === "Operational" ? (
                           <Button variant="contained" color="success">
                             {row.sampleStatus}
                           </Button>
-                        ) : row.sampleStatus === 'Under Maintenance' ? (
+                        ) : row.sampleStatus === "Under Maintenance" ? (
                           <Button variant="contained" color="error">
                             {row.sampleStatus}
                           </Button>
@@ -63,26 +62,34 @@ function ShowAllSubMedical({ medicals, type }) {
                         )}
                       </TableCell>
                       <TableCell>{row.sampleManufacturer}</TableCell>
-                      <TableCell>{row.samplePurchaseDate.split('^')[0].replace('T', ' at ')}</TableCell>
+                      <TableCell>
+                        {row.samplePurchaseDate
+                          .split("^")[0]
+                          .replace("T", " at ")}
+                      </TableCell>
 
                       <TableCell>{row.sampleTechnicians}</TableCell>
                       <TableCell>{row.sampleDepartmentNames}</TableCell>
                       <TableCell>
                         {row.samplePatientNames
-                          ? row.samplePatientNames.split(',').map((e) => {
+                          ? row.samplePatientNames.split(",").map((e) => {
                               return (
-                                <Label variant="ghost" color="success">
-                                  {e}
-                                </Label>
+                                <div style={{ marginBottom: "0.5rem" }}>
+                                  <Label variant="ghost" color="success">
+                                    {e}
+                                  </Label>
+                                </div>
                               );
                             })
-                          : 'No Patient Yet'}
+                          : "No Patient Yet"}
                       </TableCell>
                       <TableCell>
-                        <div style={{ display: 'flex', justifyContent: 'space-around' }}>
-                          <Button variant="outlined" color="info" style={{ marginRight: '1rem' }}>
-                            Edit
-                          </Button>
+                        <div
+                          style={{
+                            display: "flex",
+                            justifyContent: "space-around",
+                          }}
+                        >
                           <Button variant="outlined" color="error">
                             Delete
                           </Button>
@@ -98,7 +105,7 @@ function ShowAllSubMedical({ medicals, type }) {
 
         <Divider />
 
-        <Box sx={{ p: 2, textAlign: 'right' }}>
+        <Box sx={{ p: 2, textAlign: "right" }}>
           <Button
             to="#"
             size="small"

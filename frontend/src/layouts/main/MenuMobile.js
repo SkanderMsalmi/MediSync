@@ -160,7 +160,6 @@ export default function MenuMobile({ isOffset, isHome }) {
     if (mobileOpen) {
       handleDrawerClose();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
   const handleDrawerOpen = () => {

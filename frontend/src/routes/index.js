@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { Suspense, lazy } from 'react';
 import { Navigate, useRoutes, useLocation } from 'react-router-dom';
 // layouts
@@ -14,7 +15,6 @@ import LoadingScreen from '../components/LoadingScreen';
 // ----------------------------------------------------------------------
 
 const Loadable = (Component) => (props) => {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   const { pathname } = useLocation();
   const isDashboard = pathname.includes('/dashboard');
 
@@ -104,17 +104,13 @@ export default function Router() {
           element: <MedicalStaff />,
           children: [
             { path: 'doctors', element: <Doctor /> },
-            { path: 'general-practioner', element: <GeneralPractitioner /> },
-            { path: 'pediatrician', element: <Pediatrician /> }
+            { path: 'nurses', element: <Nurses /> },
+            { path: 'technicians', element: <Technicians /> }
           ]
         },
         {
           path: 'patient',
-          element: <Patient />,
-          children: [
-            { path: 'inpatient', element: <Inpatient /> },
-            { path: 'outpatient', element: <Outpatient /> }
-          ]
+          element: <Patientt />
         },
         {
           path: 'pharmacy',
@@ -345,10 +341,9 @@ const SurgicalEquipment = Loadable(lazy(() => import('../pages/MedicalEquipment/
 const DigitalRecord = Loadable(lazy(() => import('../pages/MedicalRecords/DigitalRecord')));
 const PhysicalRecord = Loadable(lazy(() => import('../pages/MedicalRecords/PhysicalRecord')));
 const Doctor = Loadable(lazy(() => import('../pages/MedicalStaff/Doctor')));
-const GeneralPractitioner = Loadable(lazy(() => import('../pages/MedicalStaff/GeneralPractitioner')));
-const Pediatrician = Loadable(lazy(() => import('../pages/MedicalStaff/Pediatrician')));
-const Inpatient = Loadable(lazy(() => import('../pages/Patient/Inpatient')));
-const Outpatient = Loadable(lazy(() => import('../pages/Patient/Outpatient')));
+const Nurses = Loadable(lazy(() => import('../pages/MedicalStaff/Nurses')));
+const Technicians = Loadable(lazy(() => import('../pages/MedicalStaff/Technicians')));
+const Patientt = Loadable(lazy(() => import('../pages/Patient/Patient')));
 const InHospital = Loadable(lazy(() => import('../pages/Pharmacy/InHospital')));
 const OutHospital = Loadable(lazy(() => import('../pages/Pharmacy/OutHospital')));
 const Medication = Loadable(lazy(() => import('../pages/Pharmacy/Medication')));

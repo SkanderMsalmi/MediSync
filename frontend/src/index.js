@@ -1,4 +1,7 @@
+/* eslint-disable */
+
 // mock api
+
 import './_apis_';
 
 // i18n

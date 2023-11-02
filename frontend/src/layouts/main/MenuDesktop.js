@@ -228,7 +228,6 @@ export default function MenuDesktop({ isOffset, isHome, navConfig }) {
     if (open) {
       handleClose();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
   const handleOpen = () => {
